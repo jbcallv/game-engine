@@ -1,7 +1,0 @@
-1) install cmake and make obviously (make installed on windows with chocolatey)
-2) mkdir debug and put the cmakelists file in there
-3) cmake .. -G "Unix Makefiles"
-4) make
-5) ./game-engine
-6) if it doesn't launch on windows (but no errors shown), you might be missing openal32.dll
--get it here: https://openal.org/downloads/

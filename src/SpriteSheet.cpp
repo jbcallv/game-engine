@@ -1,7 +1,4 @@
 #include "SpriteSheet.hpp"
-#include <iostream>
-#include <thread>
-
 
 SpriteSheet::SpriteSheet(std::string spriteSheetPath, sf::Vector2i spriteSize, sf::Vector2f position, 
 	bool trueCenter, float scale, float rotation) {
@@ -58,6 +55,7 @@ void SpriteSheet::nextSprite() {
 
 void SpriteSheet::Play(int delay) {
 	// implement your own version of this
+	// this won't work because of my version of mingw. need to get it with POSIX
 	//std::this_thread::sleep_for(std::chrono::milliseconds(delay));
 	nextSprite();
 }

@@ -41,7 +41,7 @@ int main()
         time = clock.restart();
         dt = time.asSeconds();
 
-        window.clear();// sf::Color(255, 255, 255));
+        window.clear();
         ps.Update(dt);
         ps.Draw();
         window.display();
