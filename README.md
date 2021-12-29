@@ -8,3 +8,6 @@
 2. `cmake .. -G "Unix Makefiles"`
 3. `make`
 4. `./game-engine`
+
+# Problems with installation
+- If you encounter any openal32.dll issues on Windows, simply get the installer [here](https://openal.org/downloads/)
