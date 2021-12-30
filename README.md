@@ -3,7 +3,8 @@
 # Installation
 * Get cmake and make installed
   * On Windows make can be installed with chocolatey
-  * On Mac idk
+  * On Mac these can be installed with Homebrew
+  * On Linux they can be installed with your standard package manager
 1. `mkdir debug`
 2. `cd debug`
 3. `cmake .. -G "Unix Makefiles"`
