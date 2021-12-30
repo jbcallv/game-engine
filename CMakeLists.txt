@@ -20,6 +20,7 @@ FetchContent_MakeAvailable(SFML)
 add_executable(
  game-engine
  src/MusicHandler.cpp
+ src/TextSystem.cpp
  src/ParticleSystem.cpp
  src/SoundHandler.cpp
  src/SpriteSheet.cpp

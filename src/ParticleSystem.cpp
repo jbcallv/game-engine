@@ -49,7 +49,7 @@ void ParticleSystem::resetParticle(std::size_t index) {
 	particleVertices[index * 4 + 3].position = sf::Vector2f(mouseX, mouseY+particleSize);
 
 	// color can be changed here
-	sf::Color color(0, 0, 100, rand() % 255);
+	sf::Color color(0, rand()%255, 100, rand() % 255);
 	particleVertices[index * 4 + 0].color = color;
 	particleVertices[index * 4 + 1].color = color;
 	particleVertices[index * 4 + 2].color = color;
