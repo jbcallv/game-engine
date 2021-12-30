@@ -24,6 +24,8 @@ add_executable(
  src/ParticleSystem.cpp
  src/SoundHandler.cpp
  src/SpriteSheet.cpp
+ src/TextBox.cpp
+ src/Button.cpp
  src/main.cpp
 )
 

@@ -8,6 +8,8 @@
 #include "MusicHandler.hpp"
 #include "ParticleSystem.hpp"
 #include "TextSystem.hpp"
+#include "TextBox.hpp"
+#include "Button.hpp"
 
 int main()
 {
@@ -34,9 +36,21 @@ int main()
         std::cout << "Coudln't get that font, try again." << std::endl;
     }
     
-    TextSystem ts("Hey","/Users/williamkyle/Desktop/font.ttf", sf::Color::Red, 25, 300.0, 300.0);
+    TextSystem ts("Hey there, welcome to the game. This is a main menu of sorts. I DONT KNOW WHAT IM DOING","/Users/williamkyle/Desktop/font.ttf", sf::Color::White, 25, 25.0, 25.0);
     
+    TextSystem bs("Feel free to type stuff on your keyboard.","/Users/williamkyle/Desktop/font.ttf", sf::Color(211,211,211), 25, 50.0, 200.0);
     
+    Textbox textbox(100, sf::Color::White, true);
+    textbox.setFont(font);
+    textbox.setPosition({ 50, 400 });
+    
+    Button button1("Click here", { 170, 50 }, 17, sf::Color(102, 102, 51), sf::Color::Black);
+    button1.setFont(font);
+    button1.setPosition(sf::Vector2f(50,100));
+    
+    Button button2("No, click here", { 170, 50 }, 17, sf::Color(102, 102, 51), sf::Color::Black);
+    button2.setFont(font);
+    button2.setPosition(sf::Vector2f(300,100));
 
     ParticleSystem ps(1000, 5, 20, window);
 
@@ -47,6 +61,28 @@ int main()
         {
             if (event.type == sf::Event::Closed)
                 window.close();
+            
+            else if (event.type == sf::Event::TextEntered)
+                textbox.typedOn(event);
+            
+            else if (event.type == sf::Event::MouseMoved){
+                // Main menu:
+                if (button1.isMouseOver(window)) {
+                    // Highlight buttons when mouse is over them:
+                    button1.setBackColor(sf::Color(153, 204, 0));
+                }
+                else {
+                    button1.setBackColor(sf::Color(102, 102, 51));
+                }
+                if (button2.isMouseOver(window)) {
+                    // Highlight buttons when mouse is over them:
+                    button2.setBackColor(sf::Color(153, 204, 0));
+                }
+                else {
+                    button2.setBackColor(sf::Color(102, 102, 51));
+                }
+            }
+            
         }
 
         time = clock.restart();
@@ -56,7 +92,11 @@ int main()
         ps.Update(dt);
         
         window.draw(ts.getText());
+        window.draw(bs.getText());
         ps.Draw();
+        textbox.drawTo(window);
+        button1.drawTo(window);
+        button2.drawTo(window);
         window.display();
     }
 
