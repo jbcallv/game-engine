@@ -22,23 +22,19 @@ int main()
 
     // for testing purposes only
     sf::Vector2i spriteSize(50, 37);
-    SpriteSheet ss("/Users/williamkyle/Desktop/Dog.png", spriteSize, sf::Vector2f(WINDOW_HEIGHT/2, WINDOW_WIDTH/2), true, 10);
+    SpriteSheet ss("../tests/images/adventurer-sheet.png", spriteSize, sf::Vector2f(WINDOW_WIDTH/2, WINDOW_HEIGHT/2), true, 10);
 
-    SoundHandler sh("/Users/williamkyle/Downloads/sound.wav");
-    sh.Play();
-
-    //MusicHandler mh("C:/Users/jbcal/Downloads/Cartoon-02.wav", true);
-    //mh.Play();
+    MusicHandler mh("../tests/sounds/sound.wav", true);
+    mh.Play();
     
+    // let's do this in the textsystem
     sf::Font font;
-    if (!font.loadFromFile("/Users/williamkyle/Desktop/font.ttf"))
+    if (!font.loadFromFile("../tests/fonts/manaspc.ttf"))
     {
         std::cout << "Coudln't get that font, try again." << std::endl;
     }
-    
-    TextSystem ts("Hey there, welcome to the game. This is a main menu of sorts. I DONT KNOW WHAT IM DOING","/Users/williamkyle/Desktop/font.ttf", sf::Color::White, 25, 25.0, 25.0);
-    
-    TextSystem bs("Feel free to type stuff on your keyboard.","/Users/williamkyle/Desktop/font.ttf", sf::Color(211,211,211), 25, 50.0, 200.0);
+ 
+    TextSystem bs("Feel free to type stuff on your keyboard.", "../tests/fonts/manaspc.ttf", sf::Color(211,211,211), 25, 50.0, 200.0);
     
     Textbox textbox(100, sf::Color::White, true);
     textbox.setFont(font);
@@ -90,10 +86,13 @@ int main()
 
         window.clear();
         ps.Update(dt);
-        
-        window.draw(ts.getText());
-        window.draw(bs.getText());
+        ss.Play(3);
+
+        ss.Draw(window);
         ps.Draw();
+        
+        //window.draw(ts.getText());
+        window.draw(bs.getText());
         textbox.drawTo(window);
         button1.drawTo(window);
         button2.drawTo(window);

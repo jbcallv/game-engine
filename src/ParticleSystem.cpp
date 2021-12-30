@@ -59,5 +59,6 @@ void ParticleSystem::resetParticle(std::size_t index) {
 	float vy = ((float)rand() / RAND_MAX) * 300 - 150;
 	particlePool[index].velocity = sf::Vector2f(vx, vy);
 
-	particlePool[index].lifetime = rand() % 5 + 2.5;
+	// make this a parameter
+	particlePool[index].lifetime = rand() % 15 + 7.5;
 }
