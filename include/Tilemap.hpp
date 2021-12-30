@@ -11,7 +11,7 @@ class Tilemap {
 public:
 	Tilemap();
 
-	bool load(const std::string& tilesetPath, const std::string& tilemapPath, unsigned int tileWidth, unsigned int tileHeight);
+	bool load(const std::string& tilesetPath, const std::string& tilemapPath, sf::Vector2u tileSize, unsigned int mapWidth, unsigned int mapHeight);
 
 	void Draw(sf::RenderWindow& window);
 
