@@ -47,9 +47,9 @@ int main()
     
     Button button2("No, click here", { 170, 50 }, 17, sf::Color(102, 102, 51), sf::Color::Black);
     button2.setFont(font);
-    button2.setPosition(sf::Vector2f(300,100));
+    button2.setPosition(sf::Vector2f(300,100));*/
 
-    ParticleSystem ps(1000, 5, 20, window);*/
+    ParticleSystem ps(1000, 5, 20, window);
 
     Joe joe(sf::Vector2f(WINDOW_WIDTH, 0));
 
@@ -89,6 +89,8 @@ int main()
 
         window.clear();
         joe.Update(dt);
+        ps.Update(dt);
+        ps.Draw();
         joe.Draw(window);
 
         window.display();

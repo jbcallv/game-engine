@@ -20,6 +20,7 @@ FetchContent_MakeAvailable(SFML)
 add_executable(
  game-engine
  src/Joe.cpp
+ src/Tilemap.cpp
  src/MusicHandler.cpp
  src/TextSystem.cpp
  src/ParticleSystem.cpp
@@ -28,7 +29,7 @@ add_executable(
  src/TextBox.cpp
  src/Button.cpp
  src/main.cpp
- "include/Joe.hpp")
+)
 
 target_link_libraries(
  game-engine

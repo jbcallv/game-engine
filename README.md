@@ -13,3 +13,6 @@
 
 # Problems with installation
 - If you encounter any openal32.dll issues on Windows, simply get the installer [here](https://openal.org/downloads/)
+
+# Development
+- Remember to add new classes to CMakeLists.txt under the add_executable command

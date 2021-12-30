@@ -34,9 +34,7 @@ void ParticleSystem::Update(float dt) {
 }
 
 void ParticleSystem::Draw() {
-	for (int i = 0; i < particlePool.size(); i++) {
-		this->window->draw(particleVertices);
-	}
+	this->window->draw(particleVertices);
 }
 
 void ParticleSystem::resetParticle(std::size_t index) {
@@ -60,5 +58,5 @@ void ParticleSystem::resetParticle(std::size_t index) {
 	particlePool[index].velocity = sf::Vector2f(vx, vy);
 
 	// make this a parameter
-	particlePool[index].lifetime = rand() % 15 + 7.5;
+	particlePool[index].lifetime = rand() % 5 + 2.5;
 }
