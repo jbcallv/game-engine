@@ -10,6 +10,7 @@
 #include "TextSystem.hpp"
 #include "TextBox.hpp"
 #include "Button.hpp"
+#include "Joe.hpp"
 
 int main()
 {
@@ -21,7 +22,7 @@ int main()
     float dt = 0;
 
     // for testing purposes only
-    sf::Vector2i spriteSize(50, 37);
+    /*sf::Vector2i spriteSize(50, 37);
     SpriteSheet ss("../tests/images/adventurer-sheet.png", spriteSize, sf::Vector2f(WINDOW_WIDTH/2, WINDOW_HEIGHT/2), true, 10);
 
     MusicHandler mh("../tests/sounds/sound.wav", true);
@@ -48,7 +49,9 @@ int main()
     button2.setFont(font);
     button2.setPosition(sf::Vector2f(300,100));
 
-    ParticleSystem ps(1000, 5, 20, window);
+    ParticleSystem ps(1000, 5, 20, window);*/
+
+    Joe joe(sf::Vector2f(WINDOW_WIDTH, 0));
 
     while (window.isOpen())
     {
@@ -58,7 +61,7 @@ int main()
             if (event.type == sf::Event::Closed)
                 window.close();
             
-            else if (event.type == sf::Event::TextEntered)
+            /*else if (event.type == sf::Event::TextEntered)
                 textbox.typedOn(event);
             
             else if (event.type == sf::Event::MouseMoved){
@@ -77,7 +80,7 @@ int main()
                 else {
                     button2.setBackColor(sf::Color(102, 102, 51));
                 }
-            }
+            }*/
             
         }
 
@@ -85,7 +88,12 @@ int main()
         dt = time.asSeconds();
 
         window.clear();
-        ps.Update(dt);
+        joe.Update(dt);
+        joe.Draw(window);
+
+        window.display();
+
+        /*ps.Update(dt);
         ss.Play(3);
 
         ss.Draw(window);
@@ -95,8 +103,8 @@ int main()
         window.draw(bs.getText());
         textbox.drawTo(window);
         button1.drawTo(window);
-        button2.drawTo(window);
-        window.display();
+        button2.drawTo(window);*/
+        //window.display();
     }
 
     return 0;
