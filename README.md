@@ -24,8 +24,9 @@ Release mode (faster):
 - If you encounter any openal32.dll issues on Windows, simply get the installer [here](https://openal.org/downloads/)
 
 # Development
-- Remember to add new classes to CMakeLists.txt under the add_executable command
-- To run the program at any point, e.g., when testing new code, simply run the following commands in 
+Remember to add new classes to CMakeLists.txt under the add_executable command
+
+To run the program at any point, e.g., when testing new code, simply run the following commands in 
  the debug / release directory created above:
  1. `make`
  2. `./game-engine`
