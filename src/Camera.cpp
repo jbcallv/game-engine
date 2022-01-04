@@ -1,7 +1,7 @@
 #include "Camera.hpp"
 
 Camera::Camera() {
-    // duh
+
 }
 
 Camera::Camera(sf::Vector2f position, sf::Vector2f size) {
@@ -9,6 +9,7 @@ Camera::Camera(sf::Vector2f position, sf::Vector2f size) {
 }
 
 void Camera::Update(sf::Vector2f playerPosition) {
+    // 1600 is right bound of tilemap and 1200 is lower bound of tilemap
     if (playerPosition.x - view.getSize().x >= 0 && playerPosition.x + view.getSize().x <= 1600) {
         // left / right good
         if (playerPosition.y - view.getSize().y >= 0 && playerPosition.y + view.getSize().y <= 1200)
