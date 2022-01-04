@@ -3,6 +3,7 @@
 #define JOE_HPP
 
 #include <SFML/Graphics.hpp>
+#include "Constants.hpp"
 #include "ParticleSystem.hpp"
 #include "SpriteSheet.hpp"
 
@@ -20,6 +21,7 @@ private:
     float speed = 200;
 
     sf::RectangleShape sprite;
+    sf::View camera;
 };
 
 #endif

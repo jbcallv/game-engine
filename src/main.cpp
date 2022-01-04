@@ -3,12 +3,14 @@
 #include <vector>
 
 #include "Constants.hpp"
+#include "Maps.hpp"
 #include "SpriteSheet.hpp"
 #include "SoundHandler.hpp"
 #include "MusicHandler.hpp"
 #include "ParticleSystem.hpp"
 #include "TextSystem.hpp"
 #include "TextBox.hpp"
+#include "Tilemap.hpp"
 #include "Button.hpp"
 #include "Joe.hpp"
 
@@ -53,6 +55,9 @@ int main()
 
     Joe joe(sf::Vector2f(WINDOW_WIDTH, 0));
 
+    Tilemap tm;
+    tm.load("../tests/images/dungeon.png", map3, sf::Vector2u(16, 16), 100, 75);
+
     while (window.isOpen())
     {
         sf::Event event;
@@ -88,6 +93,7 @@ int main()
         dt = time.asSeconds();
 
         window.clear();
+        tm.Draw(window);
         joe.Update(dt);
         ps.Update(dt);
         ps.Draw();
