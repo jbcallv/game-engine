@@ -7,7 +7,7 @@
   * On Linux they can be installed with your standard package manager
 1. `mkdir debug`
 2. `cd debug`
-3. `cmake .. -G "Unix Makefiles"`
+3. `cmake .. -G "Unix Makefiles"` or `cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release` for release mode
 4. `make`
 5. `./game-engine`
 
