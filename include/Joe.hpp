@@ -18,7 +18,7 @@ public:
 private:
     sf::Vector2f position;
     sf::Vector2f size;
-    float speed = 200;
+    float speed = 100;
 
     sf::RectangleShape sprite;
     sf::View camera;

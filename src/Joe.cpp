@@ -2,8 +2,8 @@
 
 Joe::Joe(sf::Vector2f position) {
 	this->position = position;
-	size = sf::Vector2f(30, 50);
-	camera = sf::View(position, sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT));
+	size = sf::Vector2f(10, 20);
+	camera = sf::View(position, sf::Vector2f(WINDOW_WIDTH/3, WINDOW_HEIGHT/3));
 
 	sprite = sf::RectangleShape(size);
 	sprite.setFillColor(sf::Color(255, 0, 0, 255));
