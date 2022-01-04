@@ -4,7 +4,7 @@
 * Get cmake and make installed
   * On Windows make can be installed with chocolatey
   * On Mac these can be installed with Homebrew
-  * On Linux they can be installed with your standard package manager
+  * On Linux they can be installed with your package manager
 
 Debug mode:
 1. `mkdir debug`
