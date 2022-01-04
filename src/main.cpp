@@ -53,7 +53,7 @@ int main()
 
     ParticleSystem ps(1000, 5, 20, window);
 
-    Joe joe(sf::Vector2f(WINDOW_WIDTH, 0));
+    Joe joe(sf::Vector2f(0, 0));
 
     Tilemap tm;
     tm.load("../tests/images/dungeon.png", map3, sf::Vector2u(16, 16), 100, 75);

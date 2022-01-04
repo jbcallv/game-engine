@@ -16,7 +16,6 @@ void Tilemap::load(const std::string& tilesetPath, int* tilemap, sf::Vector2u ti
 
 			int textureX = tileNumber % (tileset.getSize().x / tileSize.x);
 			int textureY = tileNumber / (tileset.getSize().x / tileSize.x);
-			std::cout << "(" << textureX << ", " << textureY << ")" << std::endl;
 
 			sf::Vertex* quad = &tilemapVertices[(i + j * mapWidth) * 4];
 
