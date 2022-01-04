@@ -6,6 +6,7 @@
 #include "Constants.hpp"
 #include "ParticleSystem.hpp"
 #include "SpriteSheet.hpp"
+#include "Camera.hpp"
 
 class Joe {
 public:
@@ -18,10 +19,13 @@ public:
 private:
     sf::Vector2f position;
     sf::Vector2f size;
-    float speed = 100;
+    float speed = 300;
 
     sf::RectangleShape sprite;
-    sf::View camera;
+    //sf::View camera;
+    Camera camera;
+    int width = WINDOW_WIDTH / 4;
+    int height = WINDOW_HEIGHT / 4;
 };
 
 #endif
