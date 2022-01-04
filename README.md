@@ -26,6 +26,6 @@ Release mode (faster):
 # Development
 - Remember to add new classes to CMakeLists.txt under the add_executable command
 
-# game
+# Game
 - multiplayer
 - mix between eastward and celeste
