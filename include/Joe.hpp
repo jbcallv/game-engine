@@ -19,13 +19,13 @@ public:
 private:
     sf::Vector2f position;
     sf::Vector2f size;
-    float speed = 300;
+    float speed = 30;
 
     sf::RectangleShape sprite;
     //sf::View camera;
     Camera camera;
-    int width = WINDOW_WIDTH / 4;
-    int height = WINDOW_HEIGHT / 4;
+    int width = WINDOW_WIDTH / 8;// / 8;
+    int height = WINDOW_HEIGHT / 8;// / 8;
 };
 
 #endif

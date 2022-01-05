@@ -2,7 +2,7 @@
 
 Joe::Joe(sf::Vector2f position) {
 	this->position = position;
-	size = sf::Vector2f(16, 32);
+	size = sf::Vector2f(4, 7);
 	camera = Camera(position, sf::Vector2f(width, height));//sf::View(position, sf::Vector2f(width, height));
 
 	sprite = sf::RectangleShape(size);

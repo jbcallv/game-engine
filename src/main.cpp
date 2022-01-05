@@ -23,10 +23,10 @@ int main()
     sf::Time time;
     float dt = 0;
 
-    Joe joe(sf::Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2));
+    Joe joe(sf::Vector2f(32, 40));
 
     Tilemap tm;
-    tm.load("../tests/images/dungeon.png", map3, sf::Vector2u(16, 16), 100, 75);
+    tm.load("../tests/images/tileset1.png", room1, sf::Vector2u(8, 8), 8, 10);
 
     while (window.isOpen())
     {
