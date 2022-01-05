@@ -22,10 +22,11 @@ private:
     float speed = 30;
 
     sf::RectangleShape sprite;
-    //sf::View camera;
     Camera camera;
     int width = WINDOW_WIDTH / 8;// / 8;
     int height = WINDOW_HEIGHT / 8;// / 8;
+
+    sf::Vector2u getCurrentTileCoordinates();
 };
 
 #endif
