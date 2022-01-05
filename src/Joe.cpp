@@ -39,6 +39,11 @@ void Joe::Update(float dt) {
 		// get player current tile
 		// check tile at col - 1
 		// if !tile is (collidable):
+        
+        //If sprint held
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
+            dt*=4;
+        }
 		position.x -= speed * dt;
         leftWalk.Update(dt);
         leftWalk.ApplyToSprite(sprite);
@@ -49,6 +54,9 @@ void Joe::Update(float dt) {
 		// get player current tile
 		// check tile at col + 1
 		// if !tile is (collidable):
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
+            dt*=4;
+        }
         position.x += speed * dt;
         rightWalk.Update(dt);
         rightWalk.ApplyToSprite(sprite);
@@ -59,6 +67,9 @@ void Joe::Update(float dt) {
 		// get player current tile
 		// check tile at row - 1
 		// if !tile is (collidable):
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
+            dt*=4;
+        }
 		position.y -= speed * dt;
         upWalk.Update(dt);
         upWalk.ApplyToSprite(sprite);
@@ -69,10 +80,14 @@ void Joe::Update(float dt) {
 		// get player current tile
 		// check tile at row + 1
 		// if !tile is (collidable):
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
+            dt*=4;
+        }
+        
 		position.y += speed * dt;
         downWalk.Update(dt);
         downWalk.ApplyToSprite(sprite);
-    }
+        }
 
 	//std::cout << position.x << ", " << position.y + (size.y / 2) << std::endl;
 	sprite.setPosition(position);
