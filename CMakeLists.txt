@@ -29,6 +29,7 @@ add_executable(
  src/SpriteSheet.cpp
  src/TextBox.cpp
  src/Button.cpp
+ src/Animation.cpp
  src/main.cpp
 )
 
