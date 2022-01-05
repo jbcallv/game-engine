@@ -2,7 +2,7 @@
 #include <chrono>
 
 Animation::Animation(int x, int y, int width, int height) {
-    texture.loadFromFile("/Users/williamkyle/git/game-engine/walk-cycle.png");
+    texture.loadFromFile("../tests/images/walk-cycle.png");
     for (int i = 0; i < nFrames; i++)
     {
         frames[i] = { x + i * width, y, width-27, height-13 };

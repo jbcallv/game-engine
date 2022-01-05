@@ -16,13 +16,13 @@ Joe::Joe(sf::Vector2f position)
 	//sprite.setFillColor(sf::Color(255, 0, 0, 255));
     
     sf::Texture gettit;
-    gettit.loadFromFile("/Users/williamkyle/git/game-engine/walk-cycle.png");
+    gettit.loadFromFile("../tets/images/walk-cycle.png");
     texture = gettit;
     sprite = sf::Sprite(texture);
     sprite.setTextureRect({0,0,64,64});
     
 	sprite.setPosition(position);
-    sprite.setScale(0.4,0.4);
+    sprite.setScale(0.3, 0.3);
     //sprite.setOrigin(size.x / 2, size.y / 2);
 }
 
