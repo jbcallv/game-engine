@@ -16,7 +16,7 @@ Joe::Joe(sf::Vector2f position)
 	//sprite.setFillColor(sf::Color(255, 0, 0, 255));
     
     sf::Texture gettit;
-    gettit.loadFromFile("../tets/images/walk-cycle.png");
+    gettit.loadFromFile("../tests/images/walk-cycle.png");
     texture = gettit;
     sprite = sf::Sprite(texture);
     sprite.setTextureRect({0,0,64,64});
@@ -74,7 +74,7 @@ void Joe::Update(float dt) {
         downWalk.ApplyToSprite(sprite);
     }
 
-	std::cout << position.x << ", " << position.y + (size.y / 2) << std::endl;
+	//std::cout << position.x << ", " << position.y + (size.y / 2) << std::endl;
 	sprite.setPosition(position);
 	camera.Update(position);
 }

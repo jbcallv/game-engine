@@ -25,24 +25,17 @@ SpriteSheet::SpriteSheet(std::string spriteSheetPath, sf::Vector2i spriteSize, s
 	location = sf::Vector2i(sprite.getTextureRect().top / spriteSize.y, sprite.getTextureRect().left / spriteSize.x);
 }
 
+void SpriteSheet::setAnimation(unsigned int animationNumber) {
+	location.x = animationNumber;
+}
+
 void SpriteSheet::setSprite(sf::Sprite& sprite, sf::Vector2i location) {
 	// set the sprite to the one at row, column to position.x, position.y respectively
 	sprite.setTextureRect(sf::IntRect(sf::Vector2i(location.y*spriteSize.x, location.x*spriteSize.y), spriteSize));
 }
 
 void SpriteSheet::nextSprite() {
-	// get current row, column of sprite
-	if (location.y >= dimensions.y && location.x < dimensions.x) {
-		// go to next row and start at first column
-		location.x += 1;
-		location.y = 0;
-		setSprite(sprite, location);
-		return;
-	}
-
-	else if (location.x >= dimensions.x && location.y >= dimensions.y) {
-		// restart at first sprite
-		location.x = 0;
+	if (location.y >= dimensions.y) {
 		location.y = 0;
 		setSprite(sprite, location);
 		return;
@@ -53,11 +46,12 @@ void SpriteSheet::nextSprite() {
 	location.y += 1;
 }
 
-void SpriteSheet::Play(int delay) {
-	// implement your own version of this
-	// this won't work because of my version of mingw. need to get it with POSIX
-	//std::this_thread::sleep_for(std::chrono::milliseconds(delay));
-	nextSprite();
+void SpriteSheet::Update(float dt, float delay) {
+	time += dt;
+	if (time >= delay) {
+		nextSprite();
+		time = 0;
+	}
 }
 
 void SpriteSheet::Draw(sf::RenderWindow& window) {

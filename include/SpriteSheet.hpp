@@ -18,9 +18,16 @@ public:
 		bool trueCenter=false, float scale=1.0, float rotation=0.0);
 
 	/*
-	* delay is in ms
+	* since each row is an animation, this method
+	* sets the animation to the given row number.
+	* Uses 0 based indexing, hopefully
 	*/
-	void Play(int delay);
+	void setAnimation(unsigned int animationNumber);
+
+	/*
+	* delay is in seconds
+	*/
+	void Update(float dt, float delay);
 
 	/*
 	* draws the current sprite on the window
@@ -33,6 +40,9 @@ private:
 	sf::Vector2i location;
 	sf::Texture spriteSheet;
 	sf::Sprite sprite;
+
+	// for updating
+	float time = 0;
 
 	/*
 	* goes to the next sprite in the sheet
