@@ -20,6 +20,8 @@ FetchContent_MakeAvailable(SFML)
 add_executable(
  game-engine
  src/Joe.cpp
+ src/GameManager.cpp
+ src/GameState.cpp
  src/Menu.cpp
  src/Camera.cpp
  src/Tilemap.cpp
