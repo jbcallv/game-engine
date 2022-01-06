@@ -4,10 +4,8 @@
 
 #include <SFML/Graphics.hpp>
 #include "Constants.hpp"
-#include "ParticleSystem.hpp"
 #include "SpriteSheet.hpp"
 #include "Camera.hpp"
-//#include "Animation.hpp"
 
 class Joe {
 public:
@@ -20,8 +18,6 @@ public:
     
     void Draw(sf::RenderWindow& window);
     
-    //void MenuIdle(sf::RenderWindow& window);
-
 private:
     sf::Vector2f position;
     static constexpr float speed = 30;

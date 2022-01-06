@@ -8,14 +8,6 @@ Joe::Joe(sf::Vector2f position) {
     animation.setGap(sf::Vector2u(24, 13));
 }
 
-/*void Joe::MenuIdle(sf::RenderWindow& window){
-    sprite.setPosition({100,500});
-    sprite.setScale(4, 4);
-    leftWalk.Update(0.002);
-    leftWalk.ApplyToSprite(sprite);
-    window.draw(sprite);
-}*/
-
 void Joe::Update(float dt) {
 	// collisions:
 	// void pieces will be marked as 0

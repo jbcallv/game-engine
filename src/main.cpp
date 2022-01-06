@@ -28,10 +28,7 @@ int main()
 
     Tilemap tm;
     tm.load("../tests/images/tileset1.png", room1, sf::Vector2u(8, 8), 8, 10);
-    //bool MainMenu = true;
     
-    //Menu mm = Menu();
-
     while (window.isOpen())
     {
         sf::Event event;
@@ -39,8 +36,6 @@ int main()
         {
             if (event.type == sf::Event::Closed)
                 window.close();
-            
-            //MainMenu = mm.MenuWhile(window,event);
         }
 
         time = clock.restart();
