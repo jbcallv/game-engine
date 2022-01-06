@@ -20,17 +20,18 @@ FetchContent_MakeAvailable(SFML)
 add_executable(
  game-engine
  src/Joe.cpp
- src/Menu.cpp
+ src/GameManager.cpp
+ src/GameState.cpp
+ src/MenuState.cpp
+ src/PlayingState.cpp
  src/Camera.cpp
  src/Tilemap.cpp
  src/MusicHandler.cpp
- src/TextSystem.cpp
  src/ParticleSystem.cpp
  src/SoundHandler.cpp
  src/SpriteSheet.cpp
- src/TextBox.cpp
- src/Button.cpp
  src/main.cpp
+ src/Gui.cpp
 )
 
 target_link_libraries(
