@@ -24,9 +24,6 @@ int main()
     float dt = 0;
 
     Joe joe(sf::Vector2f(32, 40));
-    SpriteSheet ss("../tests/images/adventurer-sheet.png", sf::Vector2i(50, 37));
-    ss.setAnimation(1);
-    ss.setPosition(sf::Vector2f(0, 25));
 
     Tilemap tm;
     tm.load("../tests/images/tileset1.png", room1, sf::Vector2u(8, 8), 8, 10);
@@ -45,8 +42,6 @@ int main()
 
         window.clear();
         tm.Draw(window);
-        //ss.Draw(window);
-        //ss.Update(dt, 0.2f);
         joe.Draw(window);
         joe.Update(dt);
 

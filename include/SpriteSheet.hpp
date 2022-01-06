@@ -24,7 +24,16 @@ public:
 	*/
 	void setAnimation(unsigned int animationNumber);
 
+	/*
+	* allows us to move the sprite
+	*/
 	void setPosition(sf::Vector2f position);
+
+	/*
+	* sets the gap size between each frame in
+	* the sprite sheet
+	*/
+	void setGap(sf::Vector2u gapSize);
 
 	/*
 	* delay is in seconds
@@ -43,7 +52,11 @@ private:
 	sf::Texture spriteSheet;
 	sf::Sprite sprite;
 
-	// for updating
+	sf::Vector2u gapSize;
+
+	/*
+	* for updating
+	*/
 	float time = 0;
 
 	/*
