@@ -10,7 +10,7 @@
 
 class Animation {
 public:
-    Animation(int x, int y, int width, int height);
+    Animation(int x, int y, int width, int height, std::string path);
     void ApplyToSprite(sf::Sprite& s) const;
     void Update(float dt);
     

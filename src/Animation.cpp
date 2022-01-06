@@ -1,8 +1,10 @@
 #include "Animation.hpp"
+#include <string>
+#include <iostream>
 #include <chrono>
 
-Animation::Animation(int x, int y, int width, int height) {
-    texture.loadFromFile("../tests/images/walk-cycle.png");
+Animation::Animation(int x, int y, int width, int height, std::string path ) {
+    texture.loadFromFile(path);
     for (int i = 0; i < nFrames; i++)
     {
         frames[i] = { x + i * width, y, width-27, height-13 };
