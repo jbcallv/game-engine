@@ -1,6 +1,3 @@
-#include <iostream>
-#include <SFML/Graphics.hpp>
-
 #include "Button.hpp"
 
 Button::Button() {

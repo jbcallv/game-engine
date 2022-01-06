@@ -24,6 +24,7 @@ void Tilemap::load(const std::string& tilesetPath, int* tilemap, sf::Vector2u ti
 			quad[2].position = sf::Vector2f((i+1) * tileSize.x, (j+1) * tileSize.y);
 			quad[3].position = sf::Vector2f(i * tileSize.x, (j+1) * tileSize.y);
 
+			// only draw if tileNumber is not 0 (empty tile)
 			if (tileNumber) {
 				quad[0].texCoords = sf::Vector2f(textureX * tileSize.x, textureY * tileSize.y);
 				quad[1].texCoords = sf::Vector2f((textureX+1) * tileSize.x, textureY * tileSize.y);

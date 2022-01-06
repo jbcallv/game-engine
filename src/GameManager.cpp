@@ -6,6 +6,11 @@ GameManager::GameManager(sf::RenderWindow& window) : window(window) {
 
 GameManager::~GameManager() {
     // pop everything from heap
+    while (!states.empty()) {
+        states.pop();
+    }
+
+    window.close();
 }
 
 void GameManager::changeState(std::unique_ptr<GameState> state) {
@@ -34,22 +39,26 @@ void GameManager::gameLoop() {
         sf::Event event;
 
         while(window.pollEvent(event)) {
-            handleEvents(event);
+            this->handleEvents(event);
         }
 
         time = clock.restart();
         dt = time.asSeconds();
 
+        window.clear();
         Update(dt);
         Draw();
+        window.display();
     }
 }
 
 void GameManager::handleEvents(sf::Event& event) {
-    if (event.type = sf::Event::Closed)
+    if (event.type == sf::Event::Closed) {
+        running = false;
         window.close();
+    }
     
-    states.top()->handleEvents(event);
+    states.top()->handleEvents(event, window);
 }
 
 void GameManager::Update(float dt) {

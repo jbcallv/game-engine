@@ -22,12 +22,13 @@ public:
     virtual void pause()=0;
     virtual void resume()=0;
 
-    virtual void handleEvents(sf::Event event)=0;
+    virtual void handleEvents(sf::Event& event, sf::RenderWindow& window)=0;
     virtual void Update(float dt)=0;
     virtual void Draw(sf::RenderWindow& window)=0;
 
-private:
     GameManager& gameManager;
+private:
+
 };
 
 #endif

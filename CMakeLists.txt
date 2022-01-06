@@ -22,7 +22,8 @@ add_executable(
  src/Joe.cpp
  src/GameManager.cpp
  src/GameState.cpp
- src/Menu.cpp
+ src/MenuState.cpp
+ src/PlayingState.cpp
  src/Camera.cpp
  src/Tilemap.cpp
  src/MusicHandler.cpp

@@ -1,8 +1,9 @@
 #pragma once
+//#if !defined(MAPS_HPP)
 #ifndef MAPS_HPP
 #define MAPS_HPP
 
-int room1[] = 
+static int room1[] = 
 {
     1,1,1,12,13,17,1,1,
     1,1,1,15,14,16,1,1,

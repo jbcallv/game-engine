@@ -1,5 +1,9 @@
 #include "Joe.hpp"
 
+Joe::Joe() {
+
+}
+
 Joe::Joe(sf::Vector2f position) {
     this->position = position;
     camera = Camera(position, sf::Vector2f(width, height));
@@ -47,7 +51,6 @@ void Joe::Update(float dt) {
 		position.y += speed * dt;
         animation.setAnimation(2);
     }
-    std::cout << position.x << ", " << position.y << std::endl;
     animation.Update(dt, 0.2f);
     animation.setPosition(position);
     camera.Update(position);

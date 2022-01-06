@@ -1,7 +1,3 @@
-#include <iostream>
-#include <sstream>
-#include <SFML/Graphics.hpp>
-
 #include "Textbox.hpp"
 
 Textbox::Textbox(int size, sf::Color color, bool sel) {
