@@ -3,6 +3,7 @@
 #define GAME_MANAGER_HPP
 
 #include <iostream>
+#include <stack>
 #include <SFML/Graphics.hpp>
 #include "GameState.hpp"
 #include "Constants.hpp"
@@ -16,20 +17,23 @@ public:
 
     void changeState(std::unique_ptr<GameState> state);
     void pushState(std::unique_ptr<GameState> state);
-    void popState(std::unique_ptr<GameState> state);
+    void popState();
 
     void gameLoop();
 
-    void handleEvents();
-    void Update();
+    void handleEvents(sf::Event& event);
+    void Update(float dt);
     void Draw();
 
-    bool running;
+    bool running = true;
+
 private:
     sf::RenderWindow& window;
     sf::Clock clock;
     sf::Time time;
     float dt = 0;
+
+    std::stack<std::unique_ptr<GameState>> states;
 };
 
 #endif

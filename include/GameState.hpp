@@ -13,7 +13,7 @@ public:
     * init and cleanup
     */
     GameState(GameManager&  gameManager);
-    virtual ~GameState();
+    virtual ~GameState()=0;
 
     /*
     * allows a state to temporarily be paused while
@@ -21,7 +21,6 @@ public:
     */
     virtual void pause()=0;
     virtual void resume()=0;
-
 
     virtual void handleEvents(sf::Event event)=0;
     virtual void Update(float dt)=0;
