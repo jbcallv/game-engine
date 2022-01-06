@@ -25,8 +25,6 @@ int main()
     float dt = 0;
 
     Joe joe(sf::Vector2f(32, 40));
-    SpriteSheet ss("../tests/images/adventurer-sheet.png", sf::Vector2i(50, 37));
-    ss.setAnimation(0);
 
     Tilemap tm;
     tm.load("../tests/images/tileset1.png", room1, sf::Vector2u(8, 8), 8, 10);
@@ -48,24 +46,9 @@ int main()
 
 
         window.clear();
-        
-        if (MainMenu){
-            mm.MenuDraw(window);
-            joe.MenuIdle(window);
-        }
-        
-        
-        else{
-            
-            time = clock.restart();
-            dt = time.asSeconds();
-            
-            tm.Draw(window);
-            ss.Draw(window);
-            ss.Update(dt, 0.2f);
-            joe.Update(dt);
-            joe.Draw(window);
-        }
+        tm.Draw(window);
+        joe.Draw(window);
+        joe.Update(dt);
         window.display();
     }
 

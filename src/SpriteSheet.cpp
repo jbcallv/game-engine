@@ -1,5 +1,9 @@
 #include "SpriteSheet.hpp"
 
+SpriteSheet::SpriteSheet() {
+
+}
+
 SpriteSheet::SpriteSheet(std::string spriteSheetPath, sf::Vector2i spriteSize, sf::Vector2f position, 
 	bool trueCenter, float scale, float rotation) {
 
@@ -11,7 +15,8 @@ SpriteSheet::SpriteSheet(std::string spriteSheetPath, sf::Vector2i spriteSize, s
 
 	// get number of rows and columns in sprite sheet
 	dimensions.x = spriteSheet.getSize().y / spriteSize.y;
-	dimensions.y = spriteSheet.getSize().x / spriteSize.x;
+	dimensions.y = spriteSheet.getSize().x / spriteSize.x - 1;
+	std::cout << dimensions.x << ", " << dimensions.y << std::endl;
 	
 	// set sprite start values
 	if (trueCenter) sprite.setOrigin(spriteSize.x / 2, spriteSize.y / 2);
@@ -26,16 +31,30 @@ SpriteSheet::SpriteSheet(std::string spriteSheetPath, sf::Vector2i spriteSize, s
 }
 
 void SpriteSheet::setAnimation(unsigned int animationNumber) {
+	if (animationNumber > dimensions.x) {
+		std::cout << "Animation number too big for sprite sheet" << std::endl;
+		return;
+	}
 	location.x = animationNumber;
+}
+
+void SpriteSheet::setPosition(sf::Vector2f position) {
+	sprite.setPosition(position);
 }
 
 void SpriteSheet::setSprite(sf::Sprite& sprite, sf::Vector2i location) {
 	// set the sprite to the one at row, column to position.x, position.y respectively
-	sprite.setTextureRect(sf::IntRect(sf::Vector2i(location.y*spriteSize.x, location.x*spriteSize.y), spriteSize));
+	sprite.setTexture(spriteSheet);
+	// add to vector2i values below
+	sprite.setTextureRect(sf::IntRect(sf::Vector2i(location.y*spriteSize.x, location.x*spriteSize.y), sf::Vector2i(spriteSize.x-gapSize.x, spriteSize.y-gapSize.y)));
+}
+
+void SpriteSheet::setGap(sf::Vector2u gapSize) {
+	this->gapSize = gapSize;
 }
 
 void SpriteSheet::nextSprite() {
-	if (location.y >= dimensions.y) {
+	if (location.y == dimensions.y) {
 		location.y = 0;
 		setSprite(sprite, location);
 		return;
@@ -55,5 +74,6 @@ void SpriteSheet::Update(float dt, float delay) {
 }
 
 void SpriteSheet::Draw(sf::RenderWindow& window) {
+	this->setSprite(sprite, location);
 	window.draw(sprite);
 }
