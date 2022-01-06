@@ -1,5 +1,9 @@
 #include "SpriteSheet.hpp"
 
+SpriteSheet::SpriteSheet() {
+
+}
+
 SpriteSheet::SpriteSheet(std::string spriteSheetPath, sf::Vector2i spriteSize, sf::Vector2f position, 
 	bool trueCenter, float scale, float rotation) {
 
@@ -26,7 +30,15 @@ SpriteSheet::SpriteSheet(std::string spriteSheetPath, sf::Vector2i spriteSize, s
 }
 
 void SpriteSheet::setAnimation(unsigned int animationNumber) {
+	if (animationNumber > dimensions.x) {
+		std::cout << "Animation number too big for sprite sheet" << std::endl;
+		return;
+	}
 	location.x = animationNumber;
+}
+
+void SpriteSheet::setPosition(sf::Vector2f position) {
+	sprite.setPosition(position);
 }
 
 void SpriteSheet::setSprite(sf::Sprite& sprite, sf::Vector2i location) {

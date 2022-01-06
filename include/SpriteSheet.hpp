@@ -24,6 +24,8 @@ public:
 	*/
 	void setAnimation(unsigned int animationNumber);
 
+	void setPosition(sf::Vector2f position);
+
 	/*
 	* delay is in seconds
 	*/
