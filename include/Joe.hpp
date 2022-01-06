@@ -20,9 +20,7 @@ public:
     
     void Draw(sf::RenderWindow& window);
     
-    void MenuIdle(sf::RenderWindow& window);
-
-    SpriteSheet animation;
+    //void MenuIdle(sf::RenderWindow& window);
 
 private:
     sf::Vector2f position;
@@ -31,9 +29,9 @@ private:
     Camera camera;
     int width = WINDOW_WIDTH / 8;
     int height = WINDOW_HEIGHT / 8;
-    
-    //SpriteSheet animation;
 
+    SpriteSheet animation;
+    
     sf::Vector2u getCurrentTileCoordinates();
 };
 
