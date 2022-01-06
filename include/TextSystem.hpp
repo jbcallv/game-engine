@@ -13,9 +13,12 @@ private:
     sf::Text text;
 
 public:
+    
+    TextSystem();
+    
     TextSystem(std::string words, std::string path, sf::Color color, int size, float x, float y);
         
-    sf::Text getText() { return text; }
+    void drawText(sf::RenderWindow &window);
     
 };
 

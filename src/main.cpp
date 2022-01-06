@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 
+#include "Menu.hpp"
 #include "Constants.hpp"
 #include "Maps.hpp"
 #include "SpriteSheet.hpp"
@@ -29,6 +30,9 @@ int main()
 
     Tilemap tm;
     tm.load("../tests/images/tileset1.png", room1, sf::Vector2u(8, 8), 8, 10);
+    bool MainMenu = true;
+    
+    Menu mm = Menu();
 
     while (window.isOpen())
     {
@@ -37,18 +41,31 @@ int main()
         {
             if (event.type == sf::Event::Closed)
                 window.close();
+            
+            MainMenu = mm.MenuWhile(window,event);
         }
+            
 
-        time = clock.restart();
-        dt = time.asSeconds();
 
         window.clear();
-        tm.Draw(window);
-        ss.Draw(window);
-        ss.Update(dt, 0.2f);
-        joe.Update(dt);
-        joe.Draw(window);
-
+        
+        if (MainMenu){
+            mm.MenuDraw(window);
+            joe.MenuIdle(window);
+        }
+        
+        
+        else{
+            
+            time = clock.restart();
+            dt = time.asSeconds();
+            
+            tm.Draw(window);
+            ss.Draw(window);
+            ss.Update(dt, 0.2f);
+            joe.Update(dt);
+            joe.Draw(window);
+        }
         window.display();
     }
 

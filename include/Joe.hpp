@@ -11,6 +11,9 @@
 
 class Joe {
 public:
+    
+    Joe();
+    
     Joe(sf::Vector2f startPosition);
 
     void Update(float dt);
@@ -18,6 +21,8 @@ public:
     void SetDirection ( const sf::Vector2f&  dir);
 
     void Draw(sf::RenderWindow& window);
+    
+    void MenuIdle(sf::RenderWindow& window);
 
 private:
     sf::Vector2f position;

@@ -30,6 +30,14 @@ void Joe::SetDirection( const sf::Vector2f& dir){
     vel = dir * speed;
 }
 
+void Joe::MenuIdle(sf::RenderWindow& window){
+    sprite.setPosition({100,500});
+    sprite.setScale(4, 4);
+    leftWalk.Update(0.002);
+    leftWalk.ApplyToSprite(sprite);
+    window.draw(sprite);
+}
+
 void Joe::Update(float dt) {
 	// collisions:
 	// void pieces will be marked as 0
@@ -95,6 +103,7 @@ void Joe::Update(float dt) {
 }
 
 void Joe::Draw(sf::RenderWindow& window) {
+    sprite.setScale(0.3, 0.3);
 	window.draw(sprite);
 	window.setView(camera.view);
 }
