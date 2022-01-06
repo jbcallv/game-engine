@@ -27,13 +27,11 @@ add_executable(
  src/Camera.cpp
  src/Tilemap.cpp
  src/MusicHandler.cpp
- src/TextSystem.cpp
  src/ParticleSystem.cpp
  src/SoundHandler.cpp
  src/SpriteSheet.cpp
- src/TextBox.cpp
- src/Button.cpp
  src/main.cpp
+ src/Gui.cpp
 )
 
 target_link_libraries(

@@ -7,8 +7,9 @@
 #include <string>
 #include <vector>
 #include "GameState.hpp"
-#include "TextSystem.hpp"
-#include "Button.hpp"
+//#include "TextSystem.hpp"
+//#include "Button.hpp"
+#include "Gui.hpp"
 #include "GameManager.hpp"
 #include "PlayingState.hpp"
 
@@ -27,7 +28,7 @@ public:
     void Draw(sf::RenderWindow& window);
     
 private:
-    Button menuButton;
+    Gui::Button menuButton;
     std::string menuText;
     
 };

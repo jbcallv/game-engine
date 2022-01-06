@@ -16,7 +16,6 @@ SpriteSheet::SpriteSheet(std::string spriteSheetPath, sf::Vector2i spriteSize, s
 	// get number of rows and columns in sprite sheet
 	dimensions.x = spriteSheet.getSize().y / spriteSize.y;
 	dimensions.y = spriteSheet.getSize().x / spriteSize.x - 1;
-	std::cout << dimensions.x << ", " << dimensions.y << std::endl;
 	
 	// set sprite start values
 	if (trueCenter) sprite.setOrigin(spriteSize.x / 2, spriteSize.y / 2);

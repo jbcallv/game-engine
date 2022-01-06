@@ -4,7 +4,7 @@ MenuState::MenuState(GameManager& gameManager) : GameState(gameManager) {
     menuText = "Click the blue button";
     std::string buttonText = "Start";
     
-    menuButton = Button(buttonText, {1000,400}, 50, sf::Color::Blue, sf::Color::Red);
+    menuButton = Gui::Button(buttonText, {1000,400}, 50, sf::Color::Blue, sf::Color::Red);
     menuButton.setPosition({500,500});
     sf::Font f;
     f.loadFromFile("../tests/fonts/manaspc.ttf");
@@ -36,7 +36,7 @@ void MenuState::Update(float dt) {
 }
 
 void MenuState::Draw(sf::RenderWindow& window) {
-    TextSystem mt = TextSystem(menuText, "../tests/fonts/manaspc.ttf", sf::Color::White, 25, 300.0f, 300.0f);
+    Gui::TextSystem mt(menuText, "../tests/fonts/manaspc.ttf", sf::Color::White, 25, 300.0f, 300.0f);
     menuButton.drawTo(window);
     mt.drawText(window);
 }
