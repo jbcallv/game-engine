@@ -18,3 +18,9 @@ TextSystem::TextSystem(std::string words, std::string path, sf::Color color, int
     text = t;
 }
 
+void TextSystem::drawText(sf::RenderWindow &window){
+    window.draw(text);
+}
+    
+
+

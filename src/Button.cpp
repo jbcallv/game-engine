@@ -57,7 +57,7 @@ void Button::setPosition(sf::Vector2f point) {
 
 void Button::drawTo(sf::RenderWindow &window) {
     window.draw(button);
-    window.draw(text);
+    //window.draw(text);
 }
 
 // Check if the mouse is within the bounds of the button:

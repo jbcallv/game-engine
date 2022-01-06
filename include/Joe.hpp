@@ -11,11 +11,16 @@
 
 class Joe {
 public:
+    
+    Joe();
+    
     Joe(sf::Vector2f startPosition);
 
     void Update(float dt);
     
     void Draw(sf::RenderWindow& window);
+    
+    void MenuIdle(sf::RenderWindow& window);
 
     SpriteSheet animation;
 

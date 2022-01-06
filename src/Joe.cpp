@@ -8,6 +8,14 @@ Joe::Joe(sf::Vector2f position) {
     animation.setGap(sf::Vector2u(24, 13));
 }
 
+void Joe::MenuIdle(sf::RenderWindow& window){
+    sprite.setPosition({100,500});
+    sprite.setScale(4, 4);
+    leftWalk.Update(0.002);
+    leftWalk.ApplyToSprite(sprite);
+    window.draw(sprite);
+}
+
 void Joe::Update(float dt) {
 	// collisions:
 	// void pieces will be marked as 0
@@ -45,17 +53,16 @@ void Joe::Update(float dt) {
 		// check tile at row + 1
 		// if !tile is (collidable):
 		position.y += speed * dt;
-        animation.setAnimation(2);
-        }
+    animation.setAnimation(2);
+  }
 
     animation.Update(dt, 0.2f);
     animation.setPosition(position);
-	camera.Update(position);
+	  camera.Update(position);
 }
 
 void Joe::Draw(sf::RenderWindow& window) {
-	//window.draw(sprite);
-	window.setView(camera.view);
+	  window.setView(camera.view);
     animation.Draw(window);
 }
 
