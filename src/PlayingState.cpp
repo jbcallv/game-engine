@@ -5,7 +5,7 @@ PlayingState::PlayingState(GameManager& gameManager) : GameState(gameManager) {
     sf::Vector2u tile(8, 8);
     unsigned int mapWidth = 8;
     unsigned int mapHeight = 10;
-    sf::Vector2f position((mapWidth*tile.x)/2, (mapHeight*tile.y)/2);
+    sf::Vector2f position((mapWidth*tile.x)/2+10, (mapHeight*tile.y)/2);
 
 
     tilemap.load("../tests/images/tileset1.png", room1, tile, mapWidth, mapHeight);

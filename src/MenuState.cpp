@@ -29,6 +29,7 @@ void MenuState::resume() {
 void MenuState::handleEvents(sf::Event& event, sf::RenderWindow& window) {
     if (event.type == sf::Event::MouseButtonPressed) {
         if (menuButton.isMouseOver(window)) {
+            // fade out music by decreasing volume
             introMusic.stop();
             gameManager.changeState(std::unique_ptr<GameState>(new PlayingState(gameManager)));
         }

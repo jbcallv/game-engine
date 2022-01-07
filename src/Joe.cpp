@@ -37,37 +37,29 @@ void Joe::handleEvents(sf::Event& event) {
 }
 
 void Joe::Update(float dt) {
-	// collisions:
+	// change room1Collisions to a pointer of current level
 	// void pieces will be marked as 0
-	//std::cout << room1[a.x + a.y*(tilemapBounds.x/tileSize.x)] - 1 << std::endl;
+	sf::Vector2u a(position.x / tileSize.x, (position.y+((size.y/3)))/tileSize.y);
+	int tileNumber = room1Collisions[(a.x-1) + a.y*(tilemapBounds.x/tileSize.x)];
+	std::cout << tileNumber << std::endl;
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
     {
-		// moving left
-		// get player current tile
-		
-		// check tile at col - 1
-		// if !tile is (collidable):
-		// * 0.2f
-		sf::Vector2u a(position.x / tileSize.x, (position.y+((size.y)))/tileSize.y);
-		int tileNumber = room1[(a.x) + a.y*(tilemapBounds.x/tileSize.x)] - 1;
-		if (tileNumber != 5 && tileNumber != 6 && tileNumber != 3 && tileNumber != 4) {
-			position.x -= speed * dt;
+		sf::Vector2u a(position.x / tileSize.x, (position.y+size.y)/tileSize.y);
+		int tileNumber = room1Collisions[(a.x-1) + a.y*(tilemapBounds.x/tileSize.x)];
+		if (tileNumber == 0) {
+			if (box.getGlobalBounds().intersects(sf::FloatRect(sf::Vector2f((a.x-1)*tileSize.x, a.y*tileSize.y), sf::Vector2f(8, 8))))
+				position.x -= speed * dt;
 			//animation.resumeAnimation();
 		}
-
 		direction = LEFT;
 		//animation.resumeAnimation();
     }
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
-		// moving right
-		// get player current tile
-		// check tile at col + 1
-		// if !tile is (collidable):
-		// change room1 to current level
 		sf::Vector2u a(((position.x + (size.x)) / tileSize.x), (position.y+(size.y))/tileSize.y);
-		int tileNumber = room1[(a.x) + a.y*(tilemapBounds.x/tileSize.x)] - 1;
-		if (tileNumber != 5 && tileNumber != 6 && tileNumber != 3 && tileNumber != 4) {
+		int tileNumber = room1Collisions[(a.x) + a.y*(tilemapBounds.x/tileSize.x)];
+		if (tileNumber != 0) {
 			position.x += speed * dt;
 			//animation.resumeAnimation();
 		}
@@ -75,13 +67,9 @@ void Joe::Update(float dt) {
     }
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
     {
-		// moving up
-		// get player current tile
-		// check tile at row - 1
-		// if !tile is (collidable):
 		sf::Vector2u a(((position.x + ((size.x/2))) / tileSize.x), (position.y+((size.y/2)))/tileSize.y);
-		int tileNumber = room1[(a.x) + a.y*(tilemapBounds.x/tileSize.x)] - 1;
-		if (tileNumber != 5 && tileNumber != 6 && tileNumber != 3 && tileNumber != 4 && tileNumber != 0 && tileNumber != 13 && tileNumber != 14 && tileNumber != 15) {
+		int tileNumber = room1Collisions[(a.x) + a.y*(tilemapBounds.x/tileSize.x)];
+		if (tileNumber != 0) {
 			position.y -= speed * dt;
 			//animation.resumeAnimation();
 		}
@@ -90,13 +78,10 @@ void Joe::Update(float dt) {
     }
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
-		// moving down
-		// get player current tile
-		// check tile at row + 1
-		// if !tile is (collidable):
 		sf::Vector2u a(((position.x + ((size.x/2))) / tileSize.x), (position.y+(size.y))/tileSize.y);
-		int tileNumber = room1[(a.x) + a.y*(tilemapBounds.x/tileSize.x)] - 1;
-		if (tileNumber != 5 && tileNumber != 6 && tileNumber != 3 && tileNumber != 4) {
+		int tileNumber = room1Collisions[(a.x) + a.y*(tilemapBounds.x/tileSize.x)];
+		std::cout << tileNumber << std::endl;
+		if (tileNumber != 0) {
 			position.y += speed * dt;
 			//animation.resumeAnimation();
 		}
