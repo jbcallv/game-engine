@@ -13,43 +13,11 @@
 #define ESCAPE_KEY 27
 
 namespace Gui {
-    class Button {
-    public:
-        Button();
-
-        Button(std::string btnText, sf::Vector2f buttonSize, int charSize, sf::Color bgColor, sf::Color textColor);
-
-        void setText(std::string con);
-
-        void setSize(sf::Vector2f);
-
-        void setCharSize(int);
-
-        void setFont(sf::Font &fonts);
-
-        void setBackColor(sf::Color color);
-
-        void setTextColor(sf::Color color);
-
-        void setPosition(sf::Vector2f point);
-
-        void drawTo(sf::RenderWindow &window);
-
-        bool isMouseOver(sf::RenderWindow &window);
-
-    private:
-        sf::RectangleShape button;
-        sf::Text text;
-
-        float btnWidth;
-        float btnHeight;
-    };
-
 
     class TextSystem {
     private:
         sf::Font font;
-        sf::Text text;
+        
 
     public:
         
@@ -58,6 +26,37 @@ namespace Gui {
         TextSystem(std::string words, std::string path, sf::Color color, int size, float x, float y);
             
         void drawText(sf::RenderWindow &window);
+
+        sf::Text textStore;
+    };
+
+    class Button {
+    public:
+        Button();
+
+        Button(std::string btnText, sf::Vector2f buttonSize, int charSize, sf::Color bgColor, sf::Color textColor, sf::Vector2f point);
+
+        void setSize(sf::Vector2f);
+
+        void setBackColor(sf::Color color);
+
+        void drawTo(sf::RenderWindow &window);
+
+        bool isMouseOver(sf::RenderWindow &window);
+
+    private:
+        sf::RectangleShape button;
+        Gui::TextSystem text;
+
+        std::string buttonText;
+        std::string fontPath;
+        sf::Color textColor;
+        int textSize;
+        float xPos;
+        float yPos;
+
+        float btnWidth;
+        float btnHeight;
     };
 
 
