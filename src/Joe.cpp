@@ -6,7 +6,7 @@ Joe::Joe() {
 
 Joe::Joe(sf::Vector2f position) {
     this->position = position;
-    camera = Camera(position, sf::Vector2f(width, height));
+    //camera = Camera(position, sf::Vector2f(width, height));
 
 	direction = DOWN;
     animation = SpriteSheet("../tests/images/walk-cycle.png", sf::Vector2i(64, 64), sf::Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2), true, 0.3f);
@@ -70,12 +70,16 @@ void Joe::Update(float dt) {
 	animation.setAnimation(direction);
 	animation.Update(dt, 0.2f);
 	animation.setPosition(position);
-    camera.Update(position);
+    //camera.Update(position);
 }
 
 void Joe::Draw(sf::RenderWindow& window) {
-    window.setView(camera.view);
+    //window.setView(camera.view);
     animation.Draw(window);
+}
+
+sf::Vector2f Joe::getPosition() {
+	return position;
 }
 
 sf::Vector2u Joe::getCurrentTileCoordinates() {
