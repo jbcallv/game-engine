@@ -45,7 +45,7 @@ void Joe::Update(float dt) {
 		// if !tile is (collidable):
 		sf::Vector2u a(position.x / tileSize.x, (position.y+((size.y)*0.2f))/tileSize.y);
 		int tileNumber = room1[(a.x) + a.y*(tilemapBounds.x/tileSize.x)] - 1;
-		if (tileNumber != 5 && tileNumber != 6) {
+		if (tileNumber != 5 && tileNumber != 6 && tileNumber != 3 && tileNumber != 4) {
 			position.x -= speed * dt;
 			animation.resumeAnimation();
 		}
@@ -59,9 +59,14 @@ void Joe::Update(float dt) {
 		// get player current tile
 		// check tile at col + 1
 		// if !tile is (collidable):
-        position.x += speed * dt;
-		direction = RIGHT;
-		animation.resumeAnimation();
+		// change room1 to current level
+		sf::Vector2u a(((position.x + (size.x*0.2f)) / tileSize.x), (position.y+(size.y*0.2f))/tileSize.y);
+		int tileNumber = room1[(a.x) + a.y*(tilemapBounds.x/tileSize.x)] - 1;
+		if (tileNumber != 5 && tileNumber != 6 && tileNumber != 3 && tileNumber != 4) {
+			position.x += speed * dt;
+			animation.resumeAnimation();
+		}
+        direction = RIGHT;
     }
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
     {
@@ -69,9 +74,14 @@ void Joe::Update(float dt) {
 		// get player current tile
 		// check tile at row - 1
 		// if !tile is (collidable):
-		position.y -= speed * dt;
+		sf::Vector2u a(((position.x + ((size.x/2)*0.2f)) / tileSize.x), (position.y+((size.y/2)*0.2f))/tileSize.y);
+		int tileNumber = room1[(a.x) + a.y*(tilemapBounds.x/tileSize.x)] - 1;
+		if (tileNumber != 5 && tileNumber != 6 && tileNumber != 3 && tileNumber != 4) {
+			position.y -= speed * dt;
+			animation.resumeAnimation();
+		}
 		direction = UP;
-		animation.resumeAnimation();
+		//animation.resumeAnimation();
     }
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
@@ -79,10 +89,15 @@ void Joe::Update(float dt) {
 		// get player current tile
 		// check tile at row + 1
 		// if !tile is (collidable):
-		position.y += speed * dt;
+		sf::Vector2u a(((position.x + ((size.x/2)*0.2f)) / tileSize.x), (position.y+(size.y*0.2f))/tileSize.y);
+		int tileNumber = room1[(a.x) + a.y*(tilemapBounds.x/tileSize.x)] - 1;
+		if (tileNumber != 5 && tileNumber != 6 && tileNumber != 3 && tileNumber != 4) {
+			position.y += speed * dt;
+			animation.resumeAnimation();
+		}
+
 		direction = DOWN;
-		animation.resumeAnimation();
-    }
+	}
 	getCurrentTileCoordinates();
 	animation.setAnimation(direction);
 	animation.Update(dt, 0.2f);
