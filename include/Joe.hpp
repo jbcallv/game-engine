@@ -27,9 +27,6 @@ private:
     sf::Vector2f position;
     static constexpr float speed = 30;
     
-    int width = WINDOW_WIDTH / 8;
-    int height = WINDOW_HEIGHT / 8;
-
     SpriteSheet animation;
     
     sf::Vector2u getCurrentTileCoordinates();
