@@ -1,11 +1,36 @@
 #include "Gui.hpp"
 
 //using namespace Gui;
+Gui::TextSystem::TextSystem(){
+    
+}
+
+Gui::TextSystem::TextSystem(std::string words, std::string path, sf::Color color, int size, float x, float y) {
+    sf::Font f;
+    if (!f.loadFromFile(path))
+    {
+        std::cout << "Coudln't get that font, try again." << std::endl;
+    }
+    
+    font = f;
+    
+    sf::Text t;
+    t.setFont(font);
+    t.setString(words);
+    t.setCharacterSize(size);
+    t.setFillColor(color);
+    t.setPosition(x,y);
+    textStore = t;
+}
+
+void Gui::TextSystem::drawText(sf::RenderWindow &window){
+    window.draw(textStore);
+}
 
 Gui::Button::Button() {
 }
 
-Gui::Button::Button(std::string btnText, sf::Vector2f buttonSize, int charSize, sf::Color bgColor, sf::Color textColor, sf::Vector2f point) {
+Gui::Button::Button(std::string btnText, sf::Vector2f buttonSize, int charSize, sf::Color bgColor, sf::Color txtColor, sf::Vector2f point) {
     button.setSize(buttonSize);
     button.setFillColor(bgColor);
 
@@ -18,9 +43,17 @@ Gui::Button::Button(std::string btnText, sf::Vector2f buttonSize, int charSize, 
     // Center text on button:
     float div = 2.0 + btnHeight / btnWidth;
 
-    float xPos = (point.x + btnWidth / div) - (text.text.getLocalBounds().width / 2);
-    float yPos = (point.y + btnHeight / div) - (text.text.getLocalBounds().height / 2);
-    Gui::TextSystem textHold(btnText, "../tests/fonts/manaspc.ttf", textColor, 25, xPos,yPos);
+    float x = (point.x + btnWidth / div) - (text.textStore.getLocalBounds().width / 2);
+    float y = (point.y + btnHeight / div) - (text.textStore.getLocalBounds().height / 2);
+
+    buttonText = btnText;
+    fontPath = "../tests/fonts/manaspc.ttf";
+    textColor = textColor;
+    textSize = charSize;
+    xPos = x;
+    yPos = y;
+
+    Gui::TextSystem textHold = Gui::TextSystem(btnText, "../tests/fonts/manaspc.ttf", txtColor, 25, xPos,yPos);
 
     text = textHold;
 }
@@ -35,9 +68,8 @@ void Gui::Button::setBackColor(sf::Color color) {
 
 void Gui::Button::drawTo(sf::RenderWindow &window) {
     window.draw(button);
-    //Gui::TextSystem textPlease("Click me!", "../tests/fonts/manaspc.ttf", sf::Color::Red, 25, 30.f,30.f);
-    //textPlease.drawText(window);
-    text.drawText(window);
+    Gui::TextSystem textDisplay(buttonText, fontPath, textColor, textSize, xPos,yPos);
+    textDisplay.drawText(window);
     
 }
 
@@ -60,32 +92,6 @@ bool Gui::Button::isMouseOver(sf::RenderWindow &window) {
         return true;
     }
     return false;
-}
-
-Gui::TextSystem::TextSystem(){
-    
-}
-
-Gui::TextSystem::TextSystem(std::string words, std::string path, sf::Color color, int size, float x, float y) {
-    sf::Font f;
-    if (!f.loadFromFile(path))
-    {
-        std::cout << "Coudln't get that font, try again." << std::endl;
-    }
-    
-    font = f;
-    
-    sf::Text t;
-    t.setFont(font);
-    t.setString(words);
-    t.setCharacterSize(size);
-    t.setFillColor(color);
-    t.setPosition(x,y);
-    text = t;
-}
-
-void Gui::TextSystem::drawText(sf::RenderWindow &window){
-    window.draw(text);
 }
 
 Gui::Textbox::Textbox(int size, sf::Color color, bool sel) {

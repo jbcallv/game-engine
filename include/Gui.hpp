@@ -17,16 +17,17 @@ namespace Gui {
     class TextSystem {
     private:
         sf::Font font;
+        
 
     public:
-
-        sf::Text text;
         
         TextSystem();
         
         TextSystem(std::string words, std::string path, sf::Color color, int size, float x, float y);
             
         void drawText(sf::RenderWindow &window);
+
+        sf::Text textStore;
     };
 
     class Button {
@@ -46,6 +47,13 @@ namespace Gui {
     private:
         sf::RectangleShape button;
         Gui::TextSystem text;
+
+        std::string buttonText;
+        std::string fontPath;
+        sf::Color textColor;
+        int textSize;
+        float xPos;
+        float yPos;
 
         float btnWidth;
         float btnHeight;
