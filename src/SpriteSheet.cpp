@@ -89,8 +89,4 @@ void SpriteSheet::Draw(sf::RenderWindow& window) {
 	this->setSprite(sprite, location);
 	window.draw(sprite);
 }
-<<<<<<< HEAD
-=======
-
 // create methods to get left, right, top, and bottom of current sprite
->>>>>>> e4cc7684d36bc3205f96b516a5092759c4803515

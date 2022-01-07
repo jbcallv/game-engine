@@ -12,11 +12,6 @@ Joe::Joe(sf::Vector2f position) {
 	direction = DOWN;
     animation = SpriteSheet("../tests/images/walk-cycle.png", sf::Vector2i(64, 64), sf::Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2), false, 0.2f);
     animation.setGap(sf::Vector2u(24, 13));
-<<<<<<< HEAD
-    moving = true;
-    
-    
-=======
 }
 
 void Joe::setBounds(sf::Vector2u bounds) {
@@ -35,7 +30,6 @@ void Joe::handleEvents(sf::Event& event) {
 				animation.stopAnimation();
 			break;
 	}
->>>>>>> e4cc7684d36bc3205f96b516a5092759c4803515
 }
 
 void Joe::Update(float dt) {

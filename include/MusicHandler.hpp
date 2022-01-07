@@ -12,7 +12,11 @@ public:
 
 	MusicHandler(std::string audioFilePath, bool loop);
 
+	void load(const std::string& audioFilePath);
+
 	void Play();
+
+	void Stop();
 
 private:
     sf::Music music;

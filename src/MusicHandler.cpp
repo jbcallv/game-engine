@@ -3,8 +3,11 @@
 #include <iostream>
 #include <SFML/Audio.hpp>
 
+MusicHandler::MusicHandler() {
+
+}
+
 MusicHandler::MusicHandler(std::string audioFilePath, bool loop) {
-    sf::Music music;
 	if (!music.openFromFile(audioFilePath)) {
 		std::cout << "Failed to load audio file. Check path and try again." << std::endl;
 	}
@@ -12,7 +15,17 @@ MusicHandler::MusicHandler(std::string audioFilePath, bool loop) {
 	music.setLoop(loop);
 }
 
+void MusicHandler::load(const std::string& audioFilePath) {
+	if (!music.openFromFile(audioFilePath)) {
+		std::cout << "Failed to load audio file. Check path and try again." << std::endl;
+	}
+}
+
 void MusicHandler::Play() {
+	music.setLoop(true);
 	music.play();
-	//music.setLoop(true);
+}
+
+void MusicHandler::Stop() {
+	music.stop();
 }

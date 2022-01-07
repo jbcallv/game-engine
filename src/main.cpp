@@ -16,12 +16,6 @@ int main()
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Game Engine Test", sf::Style::Titlebar | sf::Style::Close);
     GameManager game(window);
     
-    //Cannot get MusicHandler to work???
-    sf::Music music;
-    music.openFromFile("../tests/sounds/6pm.wav");
-    music.setLoop(true);
-    music.play();
-
     game.pushState(std::unique_ptr<GameState>(new MenuState(game)));
     game.gameLoop();
 

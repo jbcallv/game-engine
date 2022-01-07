@@ -7,11 +7,10 @@
 #include <string>
 #include <vector>
 #include "GameState.hpp"
-//#include "TextSystem.hpp"
-//#include "Button.hpp"
 #include "Gui.hpp"
 #include "GameManager.hpp"
 #include "PlayingState.hpp"
+#include "MusicHandler.hpp"
 
 class MenuState : public GameState {
 public:
@@ -30,7 +29,7 @@ public:
 private:
     Gui::Button menuButton;
     std::string menuText;
-    
+    sf::Music introMusic;
 };
 
 #endif
