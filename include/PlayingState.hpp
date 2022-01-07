@@ -6,6 +6,8 @@
 #include "GameManager.hpp"
 #include "Joe.hpp"
 #include "Tilemap.hpp"
+#include "Camera.hpp"
+#include "Constants.hpp"
 #include "Maps.hpp"
 
 class PlayingState : public GameState {
@@ -25,6 +27,10 @@ public:
 private:
     Joe joe;
     Tilemap tilemap;
+    Camera camera;
+
+    const int CAMERA_WIDTH = WINDOW_WIDTH / 8;
+    const int CAMERA_HEIGHT = WINDOW_HEIGHT / 8;
 };
 
 #endif

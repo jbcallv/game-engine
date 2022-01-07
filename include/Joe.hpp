@@ -17,6 +17,8 @@ public:
     void handleEvents(sf::Event& event);
     void Update(float dt);
     void Draw(sf::RenderWindow& window);
+
+    sf::Vector2f getPosition();
     
 private:
     enum directions {LEFT = 1, RIGHT = 3, DOWN = 2, UP = 0};
@@ -25,7 +27,7 @@ private:
     sf::Vector2f position;
     static constexpr float speed = 30;
     
-    Camera camera;
+    //Camera camera;
     int width = WINDOW_WIDTH / 8;
     int height = WINDOW_HEIGHT / 8;
 
