@@ -2,14 +2,17 @@
 #include <iostream>
 
 PlayingState::PlayingState(GameManager& gameManager) : GameState(gameManager) {
-    sf::Vector2f position(32, 40);
+    sf::Vector2f position(0, 0);
     sf::Vector2u tile(8, 8);
     unsigned int mapWidth = 8;
     unsigned int mapHeight = 10;
 
-    joe = Joe(position);
     tilemap.load("../tests/images/tileset1.png", room1, tile, mapWidth, mapHeight);
 
+    joe = Joe(position);
+    joe.setBounds(sf::Vector2u(tile.x*mapWidth, tile.y*mapHeight));
+    joe.setTileSize(tile);
+    
     camera = Camera(position, sf::Vector2f(CAMERA_WIDTH, CAMERA_HEIGHT));
     camera.setBounds(sf::Vector2u(tile.x*mapWidth, tile.y*mapHeight));
 }

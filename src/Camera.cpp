@@ -15,7 +15,7 @@ void Camera::setBounds(sf::Vector2u bounds) {
 void Camera::Update(sf::Vector2f playerPosition) {
     if (playerPosition.x + view.getSize().x >= bounds.x && playerPosition.x - view.getSize().y <= 0 &&
         playerPosition.y - view.getSize().y <= 0 && playerPosition.y + view.getSize().y >= bounds.y) {
-            // do nothing
+            view.setCenter(bounds.x / 2, bounds.y / 2);
         }
 
     // 1600 is right bound of tilemap and 1200 is lower bound of tilemap
