@@ -52,6 +52,17 @@ void SpriteSheet::setGap(sf::Vector2u gapSize) {
 	this->gapSize = gapSize;
 }
 
+void SpriteSheet::stopAnimation() {
+	while (location.y != 0) {
+		nextSprite();
+	}
+	playing = false;
+}
+
+void SpriteSheet::resumeAnimation() {
+	playing = true;
+}
+
 void SpriteSheet::nextSprite() {
 	if (location.y == dimensions.y) {
 		location.y = 0;
@@ -65,10 +76,12 @@ void SpriteSheet::nextSprite() {
 }
 
 void SpriteSheet::Update(float dt, float delay) {
-	time += dt;
-	if (time >= delay) {
-		nextSprite();
-		time = 0;
+	if (playing) {
+		time += dt;
+		if (time >= delay) {
+			nextSprite();
+			time = 0;
+		}
 	}
 }
 
@@ -77,6 +90,5 @@ void SpriteSheet::Draw(sf::RenderWindow& window) {
 	window.draw(sprite);
 }
 
-// create method that stops animation by returning to first frame
 // create method to mirror animation to eliminate the need for right and left sprites
 // create methods to get left, right, top, and bottom of current sprite
