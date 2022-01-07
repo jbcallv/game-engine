@@ -16,11 +16,13 @@ Joe::Joe(sf::Vector2f position) {
 void Joe::handleEvents(sf::Event& event) {
 	switch (event.type) {
 		case sf::Event::KeyReleased:
-			animation.stopAnimation();
+			if (event.key.code == sf::Keyboard::A || event.key.code == sf::Keyboard::S ||
+			event.key.code == sf::Keyboard::D || event.key.code == sf::Keyboard::W)
+				animation.stopAnimation();
 			break;
 		case sf::Event::KeyPressed:
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::S) ||
-				sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+			sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 				animation.resumeAnimation();
 			break;
 	}
