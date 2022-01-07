@@ -20,6 +20,7 @@ void PlayingState::resume() {
 void PlayingState::handleEvents(sf::Event& event, sf::RenderWindow& wnidow) {
     // handle joe movement here to enable communication between
     // player, camera, and tilemap
+    joe.handleEvents(event);
 }
 
 void PlayingState::Update(float dt) {
