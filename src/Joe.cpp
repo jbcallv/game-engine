@@ -10,6 +10,7 @@ Joe::Joe(sf::Vector2f position) {
 
     animation = SpriteSheet("../tests/images/walk-cycle.png", sf::Vector2i(64, 64), sf::Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2), true, 0.3f);
     animation.setGap(sf::Vector2u(24, 13));
+    moving = true;
 }
 
 void Joe::Update(float dt) {
@@ -21,6 +22,7 @@ void Joe::Update(float dt) {
 		// get player current tile
 		// check tile at col - 1
 		// if !tile is (collidable):
+        moving = true;
 		position.x -= speed * dt;
         animation.setAnimation(1);
     }
@@ -30,6 +32,7 @@ void Joe::Update(float dt) {
 		// get player current tile
 		// check tile at col + 1
 		// if !tile is (collidable):
+        moving = true;
         position.x += speed * dt;
         animation.setAnimation(3);
     }
@@ -39,6 +42,7 @@ void Joe::Update(float dt) {
 		// get player current tile
 		// check tile at row - 1
 		// if !tile is (collidable):
+        moving = true;
 		position.y -= speed * dt;
         animation.setAnimation(0);
     }
@@ -48,12 +52,16 @@ void Joe::Update(float dt) {
 		// get player current tile
 		// check tile at row + 1
 		// if !tile is (collidable):
+        moving = true;
 		position.y += speed * dt;
         animation.setAnimation(2);
     }
-    animation.Update(dt, 0.2f);
-    animation.setPosition(position);
+    if (moving){
+        animation.Update(dt, 0.2f);
+        animation.setPosition(position);
+    }
     camera.Update(position);
+    moving = false;
 }
 
 void Joe::Draw(sf::RenderWindow& window) {

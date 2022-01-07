@@ -4,7 +4,7 @@ MenuState::MenuState(GameManager& gameManager) : GameState(gameManager) {
     menuText = "Click the blue button";
     std::string buttonText = "Start";
     
-    menuButton = Gui::Button(buttonText, {1000,400}, 50, sf::Color::Blue, sf::Color::Red);
+    menuButton = Gui::Button(buttonText, {1000,400}, 50, sf::Color(91, 193, 240), sf::Color::Red);
     menuButton.setPosition({500,500});
     sf::Font f;
     f.loadFromFile("../tests/fonts/manaspc.ttf");
@@ -29,6 +29,14 @@ void MenuState::handleEvents(sf::Event& event, sf::RenderWindow& window) {
             gameManager.changeState(std::unique_ptr<GameState>(new PlayingState(gameManager)));
         }
     }
+    if (event.type == sf::Event::MouseMoved){
+            if (menuButton.isMouseOver(window))
+                menuButton.setBackColor(sf::Color(46, 60, 217));
+            
+        
+            else
+                menuButton.setBackColor(sf::Color(91, 193, 240));
+            }
 }
 
 void MenuState::Update(float dt) {

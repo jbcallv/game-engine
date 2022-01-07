@@ -21,6 +21,8 @@ public:
 private:
     sf::Vector2f position;
     static constexpr float speed = 30;
+    
+    bool moving;
 
     Camera camera;
     int width = WINDOW_WIDTH / 8;
