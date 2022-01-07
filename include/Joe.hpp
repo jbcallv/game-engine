@@ -32,7 +32,8 @@ private:
     sf::Vector2u size;
     static constexpr float speed = 30;
     
-    SpriteSheet animation;
+    //SpriteSheet animation;
+    sf::RectangleShape box;
     
     sf::Vector2u tilemapBounds;
     sf::Vector2u tileSize;
