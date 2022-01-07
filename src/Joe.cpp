@@ -8,6 +8,7 @@ Joe::Joe(sf::Vector2f position) {
     this->position = position;
     camera = Camera(position, sf::Vector2f(width, height));
 
+	direction = DOWN;
     animation = SpriteSheet("../tests/images/walk-cycle.png", sf::Vector2i(64, 64), sf::Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2), true, 0.3f);
     animation.setGap(sf::Vector2u(24, 13));
 }
@@ -35,7 +36,7 @@ void Joe::Update(float dt) {
 		// check tile at col - 1
 		// if !tile is (collidable):
 		position.x -= speed * dt;
-        animation.setAnimation(1);
+		direction = LEFT;
     }
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
@@ -44,7 +45,7 @@ void Joe::Update(float dt) {
 		// check tile at col + 1
 		// if !tile is (collidable):
         position.x += speed * dt;
-        animation.setAnimation(3);
+		direction = RIGHT;
     }
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
     {
@@ -53,7 +54,7 @@ void Joe::Update(float dt) {
 		// check tile at row - 1
 		// if !tile is (collidable):
 		position.y -= speed * dt;
-        animation.setAnimation(0);
+		direction = UP;
     }
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
@@ -62,8 +63,9 @@ void Joe::Update(float dt) {
 		// check tile at row + 1
 		// if !tile is (collidable):
 		position.y += speed * dt;
-        animation.setAnimation(2);
+		direction = DOWN;
     }
+	animation.setAnimation(direction);
 	animation.Update(dt, 0.2f);
 	animation.setPosition(position);
     camera.Update(position);

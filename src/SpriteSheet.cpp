@@ -90,5 +90,4 @@ void SpriteSheet::Draw(sf::RenderWindow& window) {
 	window.draw(sprite);
 }
 
-// create method to mirror animation to eliminate the need for right and left sprites
 // create methods to get left, right, top, and bottom of current sprite
