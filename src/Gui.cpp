@@ -5,7 +5,7 @@
 Gui::Button::Button() {
 }
 
-Gui::Button::Button(std::string btnText, sf::Vector2f buttonSize, int charSize, sf::Color bgColor, sf::Color textColor) {
+Gui::Button::Button(std::string btnText, sf::Vector2f buttonSize, int charSize, sf::Color bgColor, sf::Color textColor, sf::Vector2f point) {
     button.setSize(buttonSize);
     button.setFillColor(bgColor);
 
@@ -13,48 +13,32 @@ Gui::Button::Button(std::string btnText, sf::Vector2f buttonSize, int charSize, 
     btnWidth = buttonSize.x;
     btnHeight = buttonSize.y;
 
-    text.setString(btnText);
-    text.setCharacterSize(charSize);
-    text.setColor(textColor);
-}
+    button.setPosition(point);
 
-void Gui::Button::setText(std::string t) {
-    text.setString(t);
+    // Center text on button:
+    float div = 2.0 + btnHeight / btnWidth;
+
+    float xPos = (point.x + btnWidth / div) - (text.text.getLocalBounds().width / 2);
+    float yPos = (point.y + btnHeight / div) - (text.text.getLocalBounds().height / 2);
+    Gui::TextSystem textHold(btnText, "../tests/fonts/manaspc.ttf", textColor, 25, xPos,yPos);
+
+    text = textHold;
 }
 
 void Gui::Button::setSize(sf::Vector2f s) {
     button.setSize(s);
 }
 
-void Gui::Button::setCharSize(int c) {
-    text.setCharacterSize(c);
-}
-
-void Gui::Button::setFont(sf::Font &fonts) {
-    text.setFont(fonts);
-}
-
 void Gui::Button::setBackColor(sf::Color color) {
     button.setFillColor(color);
 }
 
-void Gui::Button::setTextColor(sf::Color color) {
-    text.setColor(color);
-}
-
-void Gui::Button::setPosition(sf::Vector2f point) {
-    button.setPosition(point);
-
-    // Center text on button:
-    float div = 2.0 + btnHeight / btnWidth;
-
-    float xPos = (point.x + btnWidth / div) - (text.getLocalBounds().width / 2);
-    float yPos = (point.y + btnHeight / div) - (text.getLocalBounds().height / 2);
-    text.setPosition(xPos, yPos);
-}
-
 void Gui::Button::drawTo(sf::RenderWindow &window) {
     window.draw(button);
+    //Gui::TextSystem textPlease("Click me!", "../tests/fonts/manaspc.ttf", sf::Color::Red, 25, 30.f,30.f);
+    //textPlease.drawText(window);
+    text.drawText(window);
+    
 }
 
 // Check if the mouse is within the bounds of the button:
@@ -102,7 +86,7 @@ void Gui::TextSystem::drawText(sf::RenderWindow &window){
 
 Gui::Textbox::Textbox(int size, sf::Color color, bool sel) {
     textbox.setCharacterSize(size);
-    textbox.setColor(color);
+    textbox.setFillColor(color);
     isSelected = sel;
 
     // Check if the textbox is selected upon creation and display it accordingly:

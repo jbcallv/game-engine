@@ -4,11 +4,9 @@ MenuState::MenuState(GameManager& gameManager) : GameState(gameManager) {
     menuText = "Click the blue button";
     std::string buttonText = "Start";
     
-    menuButton = Gui::Button(buttonText, {1000,400}, 50, sf::Color(91, 193, 240), sf::Color::Red);
-    menuButton.setPosition({500,500});
+    menuButton = Gui::Button(buttonText, {1000,400}, 50, sf::Color(91, 193, 240), sf::Color::Red, {500,500});
     sf::Font f;
     f.loadFromFile("../tests/fonts/manaspc.ttf");
-    menuButton.setFont(f);
 
     introMusic.openFromFile("../tests/sounds/6pm.wav");
     introMusic.play();

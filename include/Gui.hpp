@@ -13,25 +13,31 @@
 #define ESCAPE_KEY 27
 
 namespace Gui {
+
+    class TextSystem {
+    private:
+        sf::Font font;
+
+    public:
+
+        sf::Text text;
+        
+        TextSystem();
+        
+        TextSystem(std::string words, std::string path, sf::Color color, int size, float x, float y);
+            
+        void drawText(sf::RenderWindow &window);
+    };
+
     class Button {
     public:
         Button();
 
-        Button(std::string btnText, sf::Vector2f buttonSize, int charSize, sf::Color bgColor, sf::Color textColor);
-
-        void setText(std::string con);
+        Button(std::string btnText, sf::Vector2f buttonSize, int charSize, sf::Color bgColor, sf::Color textColor, sf::Vector2f point);
 
         void setSize(sf::Vector2f);
 
-        void setCharSize(int);
-
-        void setFont(sf::Font &fonts);
-
         void setBackColor(sf::Color color);
-
-        void setTextColor(sf::Color color);
-
-        void setPosition(sf::Vector2f point);
 
         void drawTo(sf::RenderWindow &window);
 
@@ -39,25 +45,10 @@ namespace Gui {
 
     private:
         sf::RectangleShape button;
-        sf::Text text;
+        Gui::TextSystem text;
 
         float btnWidth;
         float btnHeight;
-    };
-
-
-    class TextSystem {
-    private:
-        sf::Font font;
-        sf::Text text;
-
-    public:
-        
-        TextSystem();
-        
-        TextSystem(std::string words, std::string path, sf::Color color, int size, float x, float y);
-            
-        void drawText(sf::RenderWindow &window);
     };
 
 
