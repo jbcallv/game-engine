@@ -36,6 +36,16 @@ public:
 	void setGap(sf::Vector2u gapSize);
 
 	/*
+	* puts animation at first frame and stops
+	*/
+	void stopAnimation();
+
+	/*
+	* allows animation to continue
+	*/
+	void resumeAnimation();
+
+	/*
 	* delay is in seconds
 	*/
 	void Update(float dt, float delay);
@@ -58,6 +68,7 @@ private:
 	* for updating
 	*/
 	float time = 0;
+	bool playing = false;
 
 	/*
 	* goes to the next sprite in the sheet

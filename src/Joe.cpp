@@ -6,13 +6,26 @@ Joe::Joe() {
 
 Joe::Joe(sf::Vector2f position) {
     this->position = position;
-    camera = Camera(position, sf::Vector2f(width, height));
 
+	direction = DOWN;
     animation = SpriteSheet("../tests/images/walk-cycle.png", sf::Vector2i(64, 64), sf::Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2), true, 0.3f);
     animation.setGap(sf::Vector2u(24, 13));
+<<<<<<< HEAD
     moving = true;
     
     
+=======
+}
+
+void Joe::handleEvents(sf::Event& event) {
+	switch (event.type) {
+		case sf::Event::KeyReleased:
+			if (event.key.code == sf::Keyboard::A || event.key.code == sf::Keyboard::S ||
+			event.key.code == sf::Keyboard::D || event.key.code == sf::Keyboard::W)
+				animation.stopAnimation();
+			break;
+	}
+>>>>>>> e4cc7684d36bc3205f96b516a5092759c4803515
 }
 
 void Joe::Update(float dt) {
@@ -24,9 +37,9 @@ void Joe::Update(float dt) {
 		// get player current tile
 		// check tile at col - 1
 		// if !tile is (collidable):
-        moving = true;
 		position.x -= speed * dt;
-        animation.setAnimation(1);
+		direction = LEFT;
+		animation.resumeAnimation();
     }
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
@@ -34,9 +47,9 @@ void Joe::Update(float dt) {
 		// get player current tile
 		// check tile at col + 1
 		// if !tile is (collidable):
-        moving = true;
         position.x += speed * dt;
-        animation.setAnimation(3);
+		direction = RIGHT;
+		animation.resumeAnimation();
     }
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
     {
@@ -44,9 +57,9 @@ void Joe::Update(float dt) {
 		// get player current tile
 		// check tile at row - 1
 		// if !tile is (collidable):
-        moving = true;
 		position.y -= speed * dt;
-        animation.setAnimation(0);
+		direction = UP;
+		animation.resumeAnimation();
     }
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
@@ -54,21 +67,22 @@ void Joe::Update(float dt) {
 		// get player current tile
 		// check tile at row + 1
 		// if !tile is (collidable):
-        moving = true;
 		position.y += speed * dt;
-        animation.setAnimation(2);
+		direction = DOWN;
+		animation.resumeAnimation();
     }
-    if (moving){
-        animation.Update(dt, 0.2f);
-        animation.setPosition(position);
-    }
-    camera.Update(position);
-    moving = false;
+	animation.setAnimation(direction);
+	animation.Update(dt, 0.2f);
+	animation.setPosition(position);
 }
 
 void Joe::Draw(sf::RenderWindow& window) {
-    window.setView(camera.view);
+    //window.setView(camera.view);
     animation.Draw(window);
+}
+
+sf::Vector2f Joe::getPosition() {
+	return position;
 }
 
 sf::Vector2u Joe::getCurrentTileCoordinates() {

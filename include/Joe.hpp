@@ -14,20 +14,19 @@ public:
     
     Joe(sf::Vector2f startPosition);
 
+    void handleEvents(sf::Event& event);
     void Update(float dt);
-    
     void Draw(sf::RenderWindow& window);
+
+    sf::Vector2f getPosition();
     
 private:
+    enum directions {LEFT = 1, RIGHT = 3, DOWN = 2, UP = 0};
+    directions direction;
+
     sf::Vector2f position;
     static constexpr float speed = 30;
     
-    bool moving;
-
-    Camera camera;
-    int width = WINDOW_WIDTH / 8;
-    int height = WINDOW_HEIGHT / 8;
-
     SpriteSheet animation;
     
     sf::Vector2u getCurrentTileCoordinates();

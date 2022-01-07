@@ -52,6 +52,17 @@ void SpriteSheet::setGap(sf::Vector2u gapSize) {
 	this->gapSize = gapSize;
 }
 
+void SpriteSheet::stopAnimation() {
+	while (location.y != 0) {
+		nextSprite();
+	}
+	playing = false;
+}
+
+void SpriteSheet::resumeAnimation() {
+	playing = true;
+}
+
 void SpriteSheet::nextSprite() {
 	if (location.y == dimensions.y) {
 		location.y = 0;
@@ -65,10 +76,12 @@ void SpriteSheet::nextSprite() {
 }
 
 void SpriteSheet::Update(float dt, float delay) {
-	time += dt;
-	if (time >= delay) {
-		nextSprite();
-		time = 0;
+	if (playing) {
+		time += dt;
+		if (time >= delay) {
+			nextSprite();
+			time = 0;
+		}
 	}
 }
 
@@ -76,3 +89,8 @@ void SpriteSheet::Draw(sf::RenderWindow& window) {
 	this->setSprite(sprite, location);
 	window.draw(sprite);
 }
+<<<<<<< HEAD
+=======
+
+// create methods to get left, right, top, and bottom of current sprite
+>>>>>>> e4cc7684d36bc3205f96b516a5092759c4803515
