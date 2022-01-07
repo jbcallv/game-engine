@@ -16,18 +16,26 @@ public:
     
     Joe(sf::Vector2f startPosition);
 
-    void Update(float dt);
+    bool Update(float dt);
     
     void SetDirection ( const sf::Vector2f&  dir);
 
     void Draw(sf::RenderWindow& window);
     
     void MenuIdle(sf::RenderWindow& window);
+    
+    void drawHitBox(sf::RenderWindow& window);
 
 private:
     sf::Vector2f position;
     sf::Vector2f size;
     sf::Vector2f vel = {0.0f,0.0f};
+    
+    //Collision Testing
+    sf::FloatRect nextPos;
+    sf::RectangleShape nextBox;
+    sf::RectangleShape wall;
+    
     static constexpr float speed = 30;
 
     sf::Sprite sprite;

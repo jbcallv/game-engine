@@ -26,8 +26,8 @@ int main()
     float dt = 0;
 
     Joe joe(sf::Vector2f(32, 40));
-    SpriteSheet ss("../tests/images/adventurer-sheet.png", sf::Vector2i(50, 37));
-    ss.setAnimation(0);
+    //SpriteSheet ss("../tests/images/adventurer-sheet.png", sf::Vector2i(50, 37));
+    //ss.setAnimation(0);
     
     Frank frank(sf::Vector2f(32, 40));
 
@@ -36,6 +36,15 @@ int main()
     bool MainMenu = true;
     
     Menu mm = Menu();
+    
+    sf::RectangleShape wall;
+    wall.setFillColor(sf::Color::Red);
+    wall.setSize(sf::Vector2f(10,10));
+    wall.setPosition(50,50);
+    
+    std::cout << "hey" << std::flush;
+    
+    
 
     while (window.isOpen())
     {
@@ -51,18 +60,19 @@ int main()
 
 
         window.clear();
+        time = clock.restart();
+        dt = time.asSeconds();
         
-            
-            time = clock.restart();
-            dt = time.asSeconds();
-            
-            tm.Draw(window);
-            ss.Draw(window);
-            ss.Update(dt, 0.2f);
-            joe.Update(dt);
-            joe.Draw(window);
-            frank.Update(dt);
-            frank.Draw(window);
+        tm.Draw(window);
+        //ss.Draw(window);
+        //ss.Update(dt, 0.2f);
+        if (joe.Update(dt)){
+            std::cout << "Collision" << std::flush;
+        }
+        joe.Draw(window);
+        frank.Update(dt);
+        frank.Draw(window);
+        window.draw(wall);
         
         window.display();
     }

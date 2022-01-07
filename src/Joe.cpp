@@ -1,4 +1,6 @@
 #include "Joe.hpp"
+#include <iostream>
+#include <string>
 
 Joe::Joe(sf::Vector2f position)
     :
@@ -23,7 +25,17 @@ Joe::Joe(sf::Vector2f position)
     
 	sprite.setPosition(position);
     sprite.setScale(0.3, 0.3);
+        
+    //Collision
+    //wall.setFillColor(sf::Color::Red);
+    wall.setSize(sf::Vector2f(100,10));
+    wall.setPosition(50,50);
     //sprite.setOrigin(size.x / 2, size.y / 2);
+        
+    nextBox.setSize(sf::Vector2f(4,8));
+    nextBox.setFillColor(sf::Color::Transparent);
+    nextBox.setOutlineColor(sf::Color::White);
+    nextBox.setOutlineThickness(1.f);
 }
 
 void Joe::SetDirection( const sf::Vector2f& dir){
@@ -38,7 +50,8 @@ void Joe::MenuIdle(sf::RenderWindow& window){
     window.draw(sprite);
 }
 
-void Joe::Update(float dt) {
+bool Joe::Update(float dt) {
+    bool collide = false;
 	// collisions:
 	// void pieces will be marked as 0
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
@@ -98,8 +111,27 @@ void Joe::Update(float dt) {
         }
 
 	//std::cout << position.x << ", " << position.y + (size.y / 2) << std::endl;
+    
+    
+    //Collision Check
+    
+    sf::FloatRect spriteBounds = sprite.getGlobalBounds();
+    sf::FloatRect wallBounds = wall.getGlobalBounds();
+    
+    nextPos = spriteBounds;
+    nextPos.left += position.x;
+    nextPos.top += position.y;
+    nextBox.setPosition(nextPos.left,nextPos.top);
+    
+    if (wallBounds.intersects(nextPos)){
+        std::cout << "Collision\n" << std::endl;
+    }
+    
+    
+    
 	sprite.setPosition(position);
 	camera.Update(position);
+    return collide;
 }
 
 void Joe::Draw(sf::RenderWindow& window) {
@@ -114,5 +146,9 @@ sf::Vector2u Joe::getCurrentTileCoordinates() {
 	// round to int
 	// return value as vector
 	return sf::Vector2u(0, 0);
+}
+
+void Joe::drawHitBox(sf::RenderWindow& window){
+    window.draw(nextBox);
 }
 
