@@ -38,6 +38,8 @@ Gui::Button::Button(std::string btnText, sf::Vector2f buttonSize, int charSize, 
     btnWidth = buttonSize.x;
     btnHeight = buttonSize.y;
 
+    pointPos = point;
+
     button.setPosition(point);
 
     // Center text on button:
@@ -48,7 +50,7 @@ Gui::Button::Button(std::string btnText, sf::Vector2f buttonSize, int charSize, 
 
     buttonText = btnText;
     fontPath = "../tests/fonts/manaspc.ttf";
-    textColor = textColor;
+    textColor = txtColor;
     textSize = charSize;
     xPos = x;
     yPos = y;
@@ -56,6 +58,14 @@ Gui::Button::Button(std::string btnText, sf::Vector2f buttonSize, int charSize, 
     Gui::TextSystem textHold = Gui::TextSystem(btnText, "../tests/fonts/manaspc.ttf", txtColor, 25, xPos,yPos);
 
     text = textHold;
+}
+
+void Gui::Button::setTexture(std::string path, float width, float height){
+    buttonTexture.loadFromFile(path);
+    buttonSprite.setTexture(buttonTexture);
+    buttonSprite.setPosition(pointPos);
+    buttonSprite.setScale(sf::Vector2f(width, height));
+    hasTexture = true;
 }
 
 void Gui::Button::setSize(sf::Vector2f s) {
@@ -67,9 +77,14 @@ void Gui::Button::setBackColor(sf::Color color) {
 }
 
 void Gui::Button::drawTo(sf::RenderWindow &window) {
-    window.draw(button);
-    Gui::TextSystem textDisplay(buttonText, fontPath, textColor, textSize, xPos,yPos);
-    textDisplay.drawText(window);
+    if (!hasTexture){
+        window.draw(button);
+        Gui::TextSystem textDisplay(buttonText, fontPath, textColor, textSize, xPos,yPos);
+        textDisplay.drawText(window);
+    }
+    if (hasTexture){
+        window.draw(buttonSprite);
+    }
     
 }
 
@@ -196,4 +211,29 @@ void Gui::Textbox::inputLogic(int charTyped) {
     }
     // Set the textbox text:
     textbox.setString(text.str() + "_");
+}
+
+Gui::Settings::Settings(){
+
+}
+
+Gui::Settings::Settings(sf::Vector2f size, sf::Vector2f position){
+    settingsButton = Gui::Button("", {8,8}, 50, sf::Color(91, 193, 240), sf::Color::Red, {64,80});
+}
+
+void Gui::Settings::drawSettings(sf::RenderWindow &window){
+    settingsButton.setTexture("../tests/images/settings.png", 0.009f, 0.009f);
+    settingsButton.drawTo(window);
+}
+
+void Gui::Settings::showSettingsWindow(sf::RenderWindow &window){
+    settingsWindow.setSize({100,50});
+    settingsWindow.setFillColor(sf::Color::White);
+    settingsWindow.setPosition({80.f,80.f});
+
+    TextSystem settingsText = TextSystem("SETTINGS", "../tests/fonts/manaspc.ttf", sf::Color::Red, 50, 80.f, 80.f);
+
+    window.draw(settingsWindow);
+    settingsText.textStore.setScale({0.2,0.2});
+    settingsText.drawText(window);
 }

@@ -44,6 +44,8 @@ namespace Gui {
 
         bool isMouseOver(sf::RenderWindow &window);
 
+        void setTexture(std::string path, float width, float height);
+
     private:
         sf::RectangleShape button;
         Gui::TextSystem text;
@@ -54,6 +56,12 @@ namespace Gui {
         int textSize;
         float xPos;
         float yPos;
+        sf::Vector2f pointPos;
+
+        //Texture
+        sf::Texture buttonTexture;
+        sf::Sprite buttonSprite;
+        bool hasTexture = false;
 
         float btnWidth;
         float btnHeight;
@@ -97,6 +105,27 @@ namespace Gui {
 
         // Get user input:
         void inputLogic(int charTyped);
+    };
+
+    class Settings{
+        public:
+
+        Settings();
+
+        Settings(sf::Vector2f size, sf::Vector2f position);
+
+        void drawSettings(sf::RenderWindow &window);
+
+        void showSettingsWindow(sf::RenderWindow &window);
+
+        Gui::Button settingsButton;
+        bool showSettings = false;
+
+        private:
+
+        sf::RectangleShape settingsWindow;
+
+
     };
 };
 

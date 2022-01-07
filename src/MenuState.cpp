@@ -8,8 +8,7 @@ MenuState::MenuState(GameManager& gameManager) : GameState(gameManager) {
     sf::Font f;
     f.loadFromFile("../tests/fonts/manaspc.ttf");
 
-    introMusic.openFromFile("../tests/sounds/6pm.wav");
-    introMusic.play();
+    
 }
 
 MenuState::~MenuState() {
