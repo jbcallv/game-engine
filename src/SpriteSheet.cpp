@@ -76,3 +76,7 @@ void SpriteSheet::Draw(sf::RenderWindow& window) {
 	this->setSprite(sprite, location);
 	window.draw(sprite);
 }
+
+// create method that stops animation by returning to first frame
+// create method to mirror animation to eliminate the need for right and left sprites
+// create methods to get left, right, top, and bottom of current sprite
