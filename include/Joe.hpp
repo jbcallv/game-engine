@@ -6,6 +6,7 @@
 #include "Constants.hpp"
 #include "SpriteSheet.hpp"
 #include "Camera.hpp"
+#include "Maps.hpp"
 
 class Joe {
 public:
@@ -13,6 +14,9 @@ public:
     Joe();
     
     Joe(sf::Vector2f startPosition);
+
+    void setBounds(sf::Vector2u bounds);
+    void setTileSize(sf::Vector2u tileSize);
 
     void handleEvents(sf::Event& event);
     void Update(float dt);
@@ -25,10 +29,13 @@ private:
     directions direction;
 
     sf::Vector2f position;
+    sf::Vector2u size;
     static constexpr float speed = 30;
     
     SpriteSheet animation;
     
+    sf::Vector2u tilemapBounds;
+    sf::Vector2u tileSize;
     sf::Vector2u getCurrentTileCoordinates();
 };
 
