@@ -1,4 +1,5 @@
 #include "PlayingState.hpp"
+#include <iostream>
 
 PlayingState::PlayingState(GameManager& gameManager) : GameState(gameManager) {
     joe = Joe(sf::Vector2f(32, 40));

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <string>
 #include <vector>
 
@@ -7,12 +8,19 @@
 #include "GameState.hpp"
 #include "MenuState.hpp"
 #include "Constants.hpp"
+#include "MusicHandler.hpp"
 
 int main()
 {
     srand(time(NULL));
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Game Engine Test", sf::Style::Titlebar | sf::Style::Close);
     GameManager game(window);
+    
+    //Cannot get MusicHandler to work???
+    sf::Music music;
+    music.openFromFile("../tests/sounds/6pm.wav");
+    music.setLoop(true);
+    music.play();
 
     game.pushState(std::unique_ptr<GameState>(new MenuState(game)));
     game.gameLoop();

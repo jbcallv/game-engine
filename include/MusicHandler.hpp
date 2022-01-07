@@ -15,7 +15,7 @@ public:
 	void Play();
 
 private:
-	sf::Music music;
+    sf::Music music;
 
 };
 

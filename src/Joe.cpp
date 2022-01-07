@@ -11,6 +11,8 @@ Joe::Joe(sf::Vector2f position) {
     animation = SpriteSheet("../tests/images/walk-cycle.png", sf::Vector2i(64, 64), sf::Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2), true, 0.3f);
     animation.setGap(sf::Vector2u(24, 13));
     moving = true;
+    
+    
 }
 
 void Joe::Update(float dt) {
