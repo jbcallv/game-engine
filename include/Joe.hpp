@@ -19,6 +19,9 @@ public:
     void Draw(sf::RenderWindow& window);
     
 private:
+    enum directions {LEFT = 1, RIGHT = 3, DOWN = 2, UP = 0};
+    directions direction;
+
     sf::Vector2f position;
     static constexpr float speed = 30;
     
