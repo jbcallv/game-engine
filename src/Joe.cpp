@@ -6,7 +6,6 @@ Joe::Joe() {
 
 Joe::Joe(sf::Vector2f position) {
     this->position = position;
-    //camera = Camera(position, sf::Vector2f(width, height));
 
 	direction = DOWN;
     animation = SpriteSheet("../tests/images/walk-cycle.png", sf::Vector2i(64, 64), sf::Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2), true, 0.3f);
@@ -19,11 +18,6 @@ void Joe::handleEvents(sf::Event& event) {
 			if (event.key.code == sf::Keyboard::A || event.key.code == sf::Keyboard::S ||
 			event.key.code == sf::Keyboard::D || event.key.code == sf::Keyboard::W)
 				animation.stopAnimation();
-			break;
-		case sf::Event::KeyPressed:
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::S) ||
-			sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-				animation.resumeAnimation();
 			break;
 	}
 }
@@ -39,6 +33,7 @@ void Joe::Update(float dt) {
 		// if !tile is (collidable):
 		position.x -= speed * dt;
 		direction = LEFT;
+		animation.resumeAnimation();
     }
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
@@ -48,6 +43,7 @@ void Joe::Update(float dt) {
 		// if !tile is (collidable):
         position.x += speed * dt;
 		direction = RIGHT;
+		animation.resumeAnimation();
     }
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
     {
@@ -57,6 +53,7 @@ void Joe::Update(float dt) {
 		// if !tile is (collidable):
 		position.y -= speed * dt;
 		direction = UP;
+		animation.resumeAnimation();
     }
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
@@ -66,11 +63,11 @@ void Joe::Update(float dt) {
 		// if !tile is (collidable):
 		position.y += speed * dt;
 		direction = DOWN;
+		animation.resumeAnimation();
     }
 	animation.setAnimation(direction);
 	animation.Update(dt, 0.2f);
 	animation.setPosition(position);
-    //camera.Update(position);
 }
 
 void Joe::Draw(sf::RenderWindow& window) {
