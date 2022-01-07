@@ -62,6 +62,10 @@ bool Gui::Button::isMouseOver(sf::RenderWindow &window) {
     return false;
 }
 
+Gui::TextSystem::TextSystem(){
+    
+}
+
 Gui::TextSystem::TextSystem(std::string words, std::string path, sf::Color color, int size, float x, float y) {
     sf::Font f;
     if (!f.loadFromFile(path))
