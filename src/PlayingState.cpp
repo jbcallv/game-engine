@@ -13,6 +13,7 @@ PlayingState::PlayingState(GameManager& gameManager) : GameState(gameManager) {
     gameMusic.play();
 
     settings = Gui::Settings({8,8}, {64,80});
+    settings.setTexture();
 
     joe = Joe(position);
     joe.setBounds(sf::Vector2u(tile.x*mapWidth, tile.y*mapHeight));
@@ -57,6 +58,7 @@ void PlayingState::Draw(sf::RenderWindow& window) {
     tilemap.Draw(window);
     joe.Draw(window);
     settings.drawSettings(window);
+
     if (settings.showSettings){
         settings.showSettingsWindow(window);
     }

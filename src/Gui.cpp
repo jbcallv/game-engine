@@ -219,10 +219,15 @@ Gui::Settings::Settings(){
 
 Gui::Settings::Settings(sf::Vector2f size, sf::Vector2f position){
     settingsButton = Gui::Button("", {8,8}, 50, sf::Color(91, 193, 240), sf::Color::Red, {64,80});
+    settingsButton.setTexture("../tests/images/settings.png", 0.009f, 0.009f);
+}
+
+void Gui::Settings::setTexture(){
+    settingsButton.setTexture("../tests/images/settings.png", 0.009f, 0.009f);
 }
 
 void Gui::Settings::drawSettings(sf::RenderWindow &window){
-    settingsButton.setTexture("../tests/images/settings.png", 0.009f, 0.009f);
+    //settingsButton.setTexture("../tests/images/settings.png", 0.009f, 0.009f);
     settingsButton.drawTo(window);
 }
 

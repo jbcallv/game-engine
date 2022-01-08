@@ -118,6 +118,8 @@ namespace Gui {
 
         void showSettingsWindow(sf::RenderWindow &window);
 
+        void setTexture();
+
         Gui::Button settingsButton;
         bool showSettings = false;
 

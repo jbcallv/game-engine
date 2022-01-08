@@ -33,7 +33,7 @@ private:
     Tilemap tilemap;
     Camera camera;
     sf::Music gameMusic;
-    Gui::Settings settings;
+    Gui::Settings settings;    
 
     const int CAMERA_WIDTH = WINDOW_WIDTH / 8;
     const int CAMERA_HEIGHT = WINDOW_HEIGHT / 8;
