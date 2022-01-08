@@ -126,8 +126,6 @@ namespace Gui {
         private:
 
         sf::RectangleShape settingsWindow;
-
-
     };
 };
 

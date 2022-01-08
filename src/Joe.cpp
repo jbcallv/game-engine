@@ -98,15 +98,20 @@ void Joe::Update(float dt) {
 
 		direction = DOWN;
 	}
+	
 	getCurrentTileCoordinates();
 	animation.setAnimation(direction);
 	animation.Update(dt, 0.2f);
 	animation.setPosition(position);
+	//nameTag.textStore.setPosition(position);
 }
 
 void Joe::Draw(sf::RenderWindow& window) {
     //window.setView(camera.view);
+	Gui::TextSystem nameTag = Gui::TextSystem("Joe", "../tests/fonts/manaspc.ttf", sf::Color::White, 50, position.x+1.5, position.y-1.5);
+	nameTag.textStore.setScale(0.05f,0.05f);
     animation.Draw(window);
+	nameTag.drawText(window);
 }
 
 sf::Vector2f Joe::getPosition() {
