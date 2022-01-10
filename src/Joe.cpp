@@ -37,8 +37,8 @@ void Joe::handleEvents(sf::Event& event) {
 }
 
 void Joe::Update(float dt) {
+	// 0 is a collidable tile
 	// change room1Collisions to a pointer of current level
-	// void pieces will be marked as 0
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
     {
 		// a is top left and b is bottom left
@@ -105,16 +105,3 @@ void Joe::Draw(sf::RenderWindow& window) {
 sf::Vector2f Joe::getPosition() {
 	return position;
 }
-
-sf::Vector2u Joe::getCurrentTileCoordinates() {
-	// divide position.x by tilemap width
-	// divide position.y by tilemap height
-	// round to int
-	int x = (position.x + ((size.x/2)*0.2f)) / tileSize.x;
-	int y = (position.y + (size.y*0.2f)) / tileSize.y;
-
-	//std::cout << position.x << ", " << position.y+(size.y*0.3f) << std::endl;
-	// return value as vector
-	return sf::Vector2u(x, y);
-}
-
