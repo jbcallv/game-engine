@@ -30,7 +30,7 @@ private:
 
     sf::Vector2f position;
     sf::Vector2u size;
-    static constexpr float speed = 30;
+    static constexpr float speed = 100;
     
     //SpriteSheet animation;
     sf::RectangleShape box;

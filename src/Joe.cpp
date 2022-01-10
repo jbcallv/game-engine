@@ -42,8 +42,8 @@ void Joe::Update(float dt) {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
     {
 		// a is top left and b is bottom left
-		sf::Vector2u a(position.x/tileSize.x, (position.y+size.y/2)/tileSize.y);
-		sf::Vector2u b(position.x/tileSize.x, (position.y+size.y-0.1)/tileSize.y);
+		sf::Vector2u a((position.x-0.1)/tileSize.x, (position.y+size.y/2)/tileSize.y);
+		sf::Vector2u b((position.x-0.1)/tileSize.x, (position.y+size.y-0.1)/tileSize.y);
 		int tileNumberA = room1Collisions[(a.x) + a.y*(tilemapBounds.x/tileSize.x)];
 		int tileNumberB = room1Collisions[(b.x) + b.y*(tilemapBounds.x/tileSize.x)];
 		if (tileNumberA != 0 && tileNumberB != 0 && position.x >= 0) {
@@ -55,8 +55,8 @@ void Joe::Update(float dt) {
     }
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
-		sf::Vector2u a((position.x+size.x)/tileSize.x, (position.y+size.y/2)/tileSize.y);
-		sf::Vector2u b((position.x+size.x)/tileSize.x, (position.y+size.y-0.1)/tileSize.y);
+		sf::Vector2u a((position.x+size.x+0.1)/tileSize.x, (position.y+size.y/2)/tileSize.y);
+		sf::Vector2u b((position.x+size.x+0.1)/tileSize.x, (position.y+size.y-0.1)/tileSize.y);
 		int tileNumberA = room1Collisions[(a.x) + a.y*(tilemapBounds.x/tileSize.x)];
 		int tileNumberB = room1Collisions[(b.x) + b.y*(tilemapBounds.x/tileSize.x)];
 		if (tileNumberA != 0 && tileNumberB != 0 && position.x+size.x <= tilemapBounds.x) {
@@ -67,8 +67,8 @@ void Joe::Update(float dt) {
     }
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
     {
-		sf::Vector2u a((position.x+0.1)/tileSize.x, (position.y+size.y/3)/tileSize.y);
-		sf::Vector2u b((position.x+size.x-0.1)/tileSize.x, (position.y+size.y/3)/tileSize.y);
+		sf::Vector2u a((position.x+0.1)/tileSize.x, (position.y+(size.y/3)-0.1)/tileSize.y);
+		sf::Vector2u b((position.x+size.x-0.1)/tileSize.x, (position.y+(size.y/3)-0.1)/tileSize.y);
 		int tileNumberA = room1Collisions[(a.x) + a.y*(tilemapBounds.x/tileSize.x)];
 		int tileNumberB = room1Collisions[(b.x) + b.y*(tilemapBounds.x/tileSize.x)];
 		if (tileNumberA != 0 && tileNumberB != 0 && position.y >= 0) {
@@ -80,8 +80,8 @@ void Joe::Update(float dt) {
     }
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
-		sf::Vector2u a((position.x+0.1)/tileSize.x, (position.y+size.y)/tileSize.y);
-		sf::Vector2u b((position.x+size.x-0.1)/tileSize.x, (position.y+size.y)/tileSize.y);
+		sf::Vector2u a((position.x+0.1)/tileSize.x, (position.y+size.y+0.1)/tileSize.y);
+		sf::Vector2u b((position.x+size.x-0.1)/tileSize.x, (position.y+size.y+0.1)/tileSize.y);
 		int tileNumberA = room1Collisions[(a.x) + a.y*(tilemapBounds.x/tileSize.x)];
 		int tileNumberB = room1Collisions[(b.x) + b.y*(tilemapBounds.x/tileSize.x)];
 		if (tileNumberA != 0 && tileNumberB != 0 && position.y+size.y <= tilemapBounds.y) {
