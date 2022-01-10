@@ -34,7 +34,7 @@ bool Menu::MenuWhile(sf::RenderWindow& window, sf::Event event){
         else
             menuButton.setBackColor(sf::Color(91, 193, 240));
         }
-    
+    return true;
 }
     
 void Menu::MenuDraw(sf::RenderWindow &window){
