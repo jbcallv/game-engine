@@ -2,6 +2,8 @@
 #ifndef PLAYING_STATE_HPP
 #define PLAYING_STATE_HPP
 
+#include <iostream>
+#include <SFML/Graphics.hpp>
 #include "GameState.hpp"
 #include "GameManager.hpp"
 #include "Joe.hpp"
@@ -9,6 +11,8 @@
 #include "Camera.hpp"
 #include "Constants.hpp"
 #include "Maps.hpp"
+#include "MusicHandler.hpp"
+#include "Gui.hpp"
 
 class PlayingState : public GameState {
 public:
@@ -28,6 +32,8 @@ private:
     Joe joe;
     Tilemap tilemap;
     Camera camera;
+    sf::Music gameMusic;
+    Gui::Settings settings;    
 
     const int CAMERA_WIDTH = WINDOW_WIDTH / 8;
     const int CAMERA_HEIGHT = WINDOW_HEIGHT / 8;

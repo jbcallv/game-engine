@@ -1,11 +1,36 @@
 #include "Gui.hpp"
 
 //using namespace Gui;
+Gui::TextSystem::TextSystem(){
+    
+}
+
+Gui::TextSystem::TextSystem(std::string words, std::string path, sf::Color color, int size, float x, float y) {
+    sf::Font f;
+    if (!f.loadFromFile(path))
+    {
+        std::cout << "Coudln't get that font, try again." << std::endl;
+    }
+    
+    font = f;
+    
+    sf::Text t;
+    t.setFont(font);
+    t.setString(words);
+    t.setCharacterSize(size);
+    t.setFillColor(color);
+    t.setPosition(x,y);
+    textStore = t;
+}
+
+void Gui::TextSystem::drawText(sf::RenderWindow &window){
+    window.draw(textStore);
+}
 
 Gui::Button::Button() {
 }
 
-Gui::Button::Button(std::string btnText, sf::Vector2f buttonSize, int charSize, sf::Color bgColor, sf::Color textColor) {
+Gui::Button::Button(std::string btnText, sf::Vector2f buttonSize, int charSize, sf::Color bgColor, sf::Color txtColor, sf::Vector2f point) {
     button.setSize(buttonSize);
     button.setFillColor(bgColor);
 
@@ -13,48 +38,54 @@ Gui::Button::Button(std::string btnText, sf::Vector2f buttonSize, int charSize, 
     btnWidth = buttonSize.x;
     btnHeight = buttonSize.y;
 
-    text.setString(btnText);
-    text.setCharacterSize(charSize);
-    text.setColor(textColor);
+    pointPos = point;
+
+    button.setPosition(point);
+
+    // Center text on button:
+    float div = 2.0 + btnHeight / btnWidth;
+
+    float x = (point.x + btnWidth / div) - (text.textStore.getLocalBounds().width / 2);
+    float y = (point.y + btnHeight / div) - (text.textStore.getLocalBounds().height / 2);
+
+    buttonText = btnText;
+    fontPath = "../tests/fonts/manaspc.ttf";
+    textColor = txtColor;
+    textSize = charSize;
+    xPos = x;
+    yPos = y;
+
+    Gui::TextSystem textHold = Gui::TextSystem(btnText, "../tests/fonts/manaspc.ttf", txtColor, 25, xPos,yPos);
+
+    text = textHold;
 }
 
-void Gui::Button::setText(std::string t) {
-    text.setString(t);
+void Gui::Button::setTexture(std::string path, float width, float height){
+    buttonTexture.loadFromFile(path);
+    buttonSprite.setTexture(buttonTexture);
+    buttonSprite.setPosition(pointPos);
+    buttonSprite.setScale(sf::Vector2f(width, height));
+    hasTexture = true;
 }
 
 void Gui::Button::setSize(sf::Vector2f s) {
     button.setSize(s);
 }
 
-void Gui::Button::setCharSize(int c) {
-    text.setCharacterSize(c);
-}
-
-void Gui::Button::setFont(sf::Font &fonts) {
-    text.setFont(fonts);
-}
-
 void Gui::Button::setBackColor(sf::Color color) {
     button.setFillColor(color);
 }
 
-void Gui::Button::setTextColor(sf::Color color) {
-    text.setColor(color);
-}
-
-void Gui::Button::setPosition(sf::Vector2f point) {
-    button.setPosition(point);
-
-    // Center text on button:
-    float div = 2.0 + btnHeight / btnWidth;
-
-    float xPos = (point.x + btnWidth / div) - (text.getLocalBounds().width / 2);
-    float yPos = (point.y + btnHeight / div) - (text.getLocalBounds().height / 2);
-    text.setPosition(xPos, yPos);
-}
-
 void Gui::Button::drawTo(sf::RenderWindow &window) {
-    window.draw(button);
+    if (!hasTexture){
+        window.draw(button);
+        Gui::TextSystem textDisplay(buttonText, fontPath, textColor, textSize, xPos,yPos);
+        textDisplay.drawText(window);
+    }
+    if (hasTexture){
+        window.draw(buttonSprite);
+    }
+    
 }
 
 // Check if the mouse is within the bounds of the button:
@@ -78,31 +109,9 @@ bool Gui::Button::isMouseOver(sf::RenderWindow &window) {
     return false;
 }
 
-Gui::TextSystem::TextSystem(std::string words, std::string path, sf::Color color, int size, float x, float y) {
-    sf::Font f;
-    if (!f.loadFromFile(path))
-    {
-        std::cout << "Coudln't get that font, try again." << std::endl;
-    }
-    
-    font = f;
-    
-    sf::Text t;
-    t.setFont(font);
-    t.setString(words);
-    t.setCharacterSize(size);
-    t.setFillColor(color);
-    t.setPosition(x,y);
-    text = t;
-}
-
-void Gui::TextSystem::drawText(sf::RenderWindow &window){
-    window.draw(text);
-}
-
 Gui::Textbox::Textbox(int size, sf::Color color, bool sel) {
     textbox.setCharacterSize(size);
-    textbox.setColor(color);
+    textbox.setFillColor(color);
     isSelected = sel;
 
     // Check if the textbox is selected upon creation and display it accordingly:
@@ -202,4 +211,34 @@ void Gui::Textbox::inputLogic(int charTyped) {
     }
     // Set the textbox text:
     textbox.setString(text.str() + "_");
+}
+
+Gui::Settings::Settings(){
+
+}
+
+Gui::Settings::Settings(sf::Vector2f size, sf::Vector2f position){
+    settingsButton = Gui::Button("", {8,8}, 50, sf::Color(91, 193, 240), sf::Color::Red, {64,80});
+    settingsButton.setTexture("../tests/images/settings.png", 0.009f, 0.009f);
+}
+
+void Gui::Settings::setTexture(){
+    settingsButton.setTexture("../tests/images/settings.png", 0.009f, 0.009f);
+}
+
+void Gui::Settings::drawSettings(sf::RenderWindow &window){
+    //settingsButton.setTexture("../tests/images/settings.png", 0.009f, 0.009f);
+    settingsButton.drawTo(window);
+}
+
+void Gui::Settings::showSettingsWindow(sf::RenderWindow &window){
+    settingsWindow.setSize({100,50});
+    settingsWindow.setFillColor(sf::Color::White);
+    settingsWindow.setPosition({80.f,80.f});
+
+    TextSystem settingsText = TextSystem("SETTINGS", "../tests/fonts/manaspc.ttf", sf::Color::Red, 50, 80.f, 80.f);
+
+    window.draw(settingsWindow);
+    settingsText.textStore.setScale({0.2,0.2});
+    settingsText.drawText(window);
 }

@@ -9,6 +9,12 @@ PlayingState::PlayingState(GameManager& gameManager) : GameState(gameManager) {
 
 
     tilemap.load("../tests/images/tileset1.png", room1, tile, mapWidth, mapHeight);
+    
+    gameMusic.openFromFile("../tests/sounds/Player-II.wav");
+    gameMusic.play();
+
+    settings = Gui::Settings({8,8}, {64,80});
+    settings.setTexture();
 
     joe = Joe(position);
     joe.setBounds(sf::Vector2u(tile.x*mapWidth, tile.y*mapHeight));
@@ -30,10 +36,17 @@ void PlayingState::resume() {
 
 }
 
-void PlayingState::handleEvents(sf::Event& event, sf::RenderWindow& wnidow) {
+void PlayingState::handleEvents(sf::Event& event, sf::RenderWindow& window) {
     // handle joe movement here to enable communication between
     // player, camera, and tilemap
     joe.handleEvents(event);
+
+    if (event.type == sf::Event::MouseButtonPressed) {
+        if (settings.settingsButton.isMouseOver(window)) {
+            std::cout<<"SETTINGS CLICKED"<<std::endl;
+            settings.showSettings = !settings.showSettings;
+        }
+    }
 }
 
 void PlayingState::Update(float dt) {
@@ -45,4 +58,9 @@ void PlayingState::Draw(sf::RenderWindow& window) {
     window.setView(camera.view);
     tilemap.Draw(window);
     joe.Draw(window);
+    settings.drawSettings(window);
+
+    if (settings.showSettings){
+        settings.showSettingsWindow(window);
+    }
 }

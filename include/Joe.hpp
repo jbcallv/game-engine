@@ -7,6 +7,7 @@
 #include "SpriteSheet.hpp"
 #include "Camera.hpp"
 #include "Maps.hpp"
+#include "Gui.hpp"
 
 class Joe {
 public:
@@ -23,6 +24,8 @@ public:
     void Draw(sf::RenderWindow& window);
 
     sf::Vector2f getPosition();
+
+    Gui::TextSystem nameTag;
     
 private:
     enum directions {LEFT = 1, RIGHT = 3, DOWN = 2, UP = 0};
