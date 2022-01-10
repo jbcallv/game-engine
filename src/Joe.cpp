@@ -39,17 +39,15 @@ void Joe::handleEvents(sf::Event& event) {
 void Joe::Update(float dt) {
 	// change room1Collisions to a pointer of current level
 	// void pieces will be marked as 0
-	sf::Vector2u a(position.x / tileSize.x, (position.y+((size.y/3)))/tileSize.y);
-	int tileNumber = room1Collisions[(a.x-1) + a.y*(tilemapBounds.x/tileSize.x)];
-	std::cout << tileNumber << std::endl;
-
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
     {
-		sf::Vector2u a(position.x / tileSize.x, (position.y+size.y)/tileSize.y);
-		int tileNumber = room1Collisions[(a.x-1) + a.y*(tilemapBounds.x/tileSize.x)];
-		if (tileNumber == 0) {
-			if (box.getGlobalBounds().intersects(sf::FloatRect(sf::Vector2f((a.x-1)*tileSize.x, a.y*tileSize.y), sf::Vector2f(8, 8))))
-				position.x -= speed * dt;
+		// a is top left and b is bottom left
+		sf::Vector2u a(position.x/tileSize.x, (position.y+size.y/2)/tileSize.y);
+		sf::Vector2u b(position.x/tileSize.x, (position.y+size.y-0.1)/tileSize.y);
+		int tileNumberA = room1Collisions[(a.x) + a.y*(tilemapBounds.x/tileSize.x)];
+		int tileNumberB = room1Collisions[(b.x) + b.y*(tilemapBounds.x/tileSize.x)];
+		if (tileNumberA != 0 && tileNumberB != 0 && position.x >= 0) {
+			position.x -= speed * dt;
 			//animation.resumeAnimation();
 		}
 		direction = LEFT;
@@ -57,9 +55,11 @@ void Joe::Update(float dt) {
     }
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
-		sf::Vector2u a(((position.x + (size.x)) / tileSize.x), (position.y+(size.y))/tileSize.y);
-		int tileNumber = room1Collisions[(a.x) + a.y*(tilemapBounds.x/tileSize.x)];
-		if (tileNumber != 0) {
+		sf::Vector2u a((position.x+size.x)/tileSize.x, (position.y+size.y/2)/tileSize.y);
+		sf::Vector2u b((position.x+size.x)/tileSize.x, (position.y+size.y-0.1)/tileSize.y);
+		int tileNumberA = room1Collisions[(a.x) + a.y*(tilemapBounds.x/tileSize.x)];
+		int tileNumberB = room1Collisions[(b.x) + b.y*(tilemapBounds.x/tileSize.x)];
+		if (tileNumberA != 0 && tileNumberB != 0 && position.x+size.x <= tilemapBounds.x) {
 			position.x += speed * dt;
 			//animation.resumeAnimation();
 		}
@@ -67,9 +67,11 @@ void Joe::Update(float dt) {
     }
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
     {
-		sf::Vector2u a(((position.x + ((size.x/2))) / tileSize.x), (position.y+((size.y/2)))/tileSize.y);
-		int tileNumber = room1Collisions[(a.x) + a.y*(tilemapBounds.x/tileSize.x)];
-		if (tileNumber != 0) {
+		sf::Vector2u a((position.x+0.1)/tileSize.x, (position.y+size.y/3)/tileSize.y);
+		sf::Vector2u b((position.x+size.x-0.1)/tileSize.x, (position.y+size.y/3)/tileSize.y);
+		int tileNumberA = room1Collisions[(a.x) + a.y*(tilemapBounds.x/tileSize.x)];
+		int tileNumberB = room1Collisions[(b.x) + b.y*(tilemapBounds.x/tileSize.x)];
+		if (tileNumberA != 0 && tileNumberB != 0 && position.y >= 0) {
 			position.y -= speed * dt;
 			//animation.resumeAnimation();
 		}
@@ -78,17 +80,16 @@ void Joe::Update(float dt) {
     }
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
-		sf::Vector2u a(((position.x + ((size.x/2))) / tileSize.x), (position.y+(size.y))/tileSize.y);
-		int tileNumber = room1Collisions[(a.x) + a.y*(tilemapBounds.x/tileSize.x)];
-		std::cout << tileNumber << std::endl;
-		if (tileNumber != 0) {
+		sf::Vector2u a((position.x+0.1)/tileSize.x, (position.y+size.y)/tileSize.y);
+		sf::Vector2u b((position.x+size.x-0.1)/tileSize.x, (position.y+size.y)/tileSize.y);
+		int tileNumberA = room1Collisions[(a.x) + a.y*(tilemapBounds.x/tileSize.x)];
+		int tileNumberB = room1Collisions[(b.x) + b.y*(tilemapBounds.x/tileSize.x)];
+		if (tileNumberA != 0 && tileNumberB != 0 && position.y+size.y <= tilemapBounds.y) {
 			position.y += speed * dt;
 			//animation.resumeAnimation();
 		}
-
 		direction = DOWN;
 	}
-	getCurrentTileCoordinates();
 	//animation.setAnimation(direction);
 	//animation.Update(dt, 0.2f);
 	//animation.setPosition(position);
