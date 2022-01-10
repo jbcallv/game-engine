@@ -10,8 +10,8 @@ PlayingState::PlayingState(GameManager& gameManager) : GameState(gameManager) {
 
     tilemap.load("../tests/images/tileset1.png", room1, tile, mapWidth, mapHeight);
     
-    gameMusic.openFromFile("../tests/sounds/Player-II.wav");
-    gameMusic.play();
+    //gameMusic.openFromFile("../tests/sounds/Player-II.wav");
+    //gameMusic.play();
 
     settings = Gui::Settings({8,8}, {64,80});
     settings.setTexture();
