@@ -10,8 +10,8 @@ PlayingState::PlayingState(GameManager& gameManager) : GameState(gameManager) {
 
     tilemap.load("../tests/images/tileset1.png", room1, tile, mapWidth, mapHeight);
     
-    //gameMusic.openFromFile("../tests/sounds/Player-II.wav");
-    //gameMusic.play();
+    gameMusic.openFromFile("../tests/sounds/Player-II.wav");
+    gameMusic.play();
 
     settings = Gui::Settings({8,8}, {64,80});
     settings.setTexture();
@@ -44,7 +44,12 @@ void PlayingState::handleEvents(sf::Event& event, sf::RenderWindow& window) {
     if (event.type == sf::Event::MouseButtonPressed) {
         if (settings.settingsButton.isMouseOver(window)) {
             std::cout<<"SETTINGS CLICKED"<<std::endl;
-            settings.showSettings = !settings.showSettings;
+            if (settings.toggleSettings(event, gameMusic)){
+                gameMusic.play();
+            }
+            else{
+                gameMusic.pause();
+            }
         }
     }
 }
@@ -60,7 +65,9 @@ void PlayingState::Draw(sf::RenderWindow& window) {
     joe.Draw(window);
     settings.drawSettings(window);
 
-    if (settings.showSettings){
+    if (settings.togSettings){
         settings.showSettingsWindow(window);
     }
 }
+
+  

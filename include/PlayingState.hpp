@@ -27,12 +27,13 @@ public:
     void handleEvents(sf::Event& event, sf::RenderWindow& window);
     void Update(float dt);
     void Draw(sf::RenderWindow& window);
+
+    sf::Music gameMusic;
     
 private:
     Joe joe;
     Tilemap tilemap;
     Camera camera;
-    sf::Music gameMusic;
     Gui::Settings settings;    
 
     const int CAMERA_WIDTH = WINDOW_WIDTH / 8;

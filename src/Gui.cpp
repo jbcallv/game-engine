@@ -226,6 +226,17 @@ void Gui::Settings::setTexture(){
     settingsButton.setTexture("../tests/images/settings.png", 0.009f, 0.009f);
 }
 
+bool Gui::Settings::toggleSettings(sf::Event& event, sf::Music music){
+    togsettings != togSettings;
+    if (togSettings){
+        music.play();
+    }
+    else{
+        music.pause();
+    }
+    return togSettings;
+}
+
 void Gui::Settings::drawSettings(sf::RenderWindow &window){
     //settingsButton.setTexture("../tests/images/settings.png", 0.009f, 0.009f);
     settingsButton.drawTo(window);

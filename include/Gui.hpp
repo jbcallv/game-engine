@@ -6,6 +6,7 @@
 #include <sstream>
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include "MusicHandler.hpp"
 
 // Define keys:
 #define DELETE_KEY 8
@@ -116,12 +117,17 @@ namespace Gui {
 
         void drawSettings(sf::RenderWindow &window);
 
+        bool toggleSettings(sf::Event& event);
+
         void showSettingsWindow(sf::RenderWindow &window);
 
         void setTexture();
 
+        void pauseMusic();
+
+
         Gui::Button settingsButton;
-        bool showSettings = false;
+        bool togSettings = false;
 
         private:
 
